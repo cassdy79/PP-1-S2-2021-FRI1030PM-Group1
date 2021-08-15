@@ -38,12 +38,12 @@
 
   	<div class="input-group">
   	  <label>Password (8 Characters)</label>
-  	  <input type="password" name="password_1" maxlength="8" required>
+  	  <input type="password" name="password_1"  required>
   	</div>
 
   	<div class="input-group">
   	  <label>Confirm password</label>
-  	  <input type="password" name="password_2" maxlength="8" required>
+  	  <input type="password" name="password_2"  required>
   	</div>
 
   	<div class="input-group">

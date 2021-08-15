@@ -1,4 +1,6 @@
-<?php include('layouts/header.php') ?>
+<?php include('layouts/header.php') ;
+
+?>
 
 <div class="header">
 	<h2>Home Page</h2>

@@ -8,8 +8,11 @@ $errors = array();
 $action = filter_input(INPUT_POST, 'post', FILTER_SANITIZE_STRING);
 if (!$action) {
     $action = filter_input(INPUT_GET, 'get', FILTER_SANITIZE_STRING);
+    if (!$action){
+        if (isset($_GET['logout'])){
+        $action = "logout";}
+    }
 }
-
 //if action was login
 if ($action === "register"){
     $fullname = mysqli_real_escape_string($db, $_POST['fullname']);
@@ -25,14 +28,44 @@ if ($action === "register"){
    //     }
 
     //else
-     if ($password_1 != $password_2) {
+    if (empty($fullname)) { array_push($errors, "Full Name is required"); }
+    if (empty($phone)) { array_push($errors, "Phone Number is required"); }
+    if (empty($email)) { array_push($errors, "Email is required"); }
+    if (empty($password_1)) { array_push($errors, "Password is required"); }
+    if (empty($password_2)) { array_push($errors, "Confirm Password is required"); }
+
+    if ($password_1 != $password_2) {
             array_push($errors, "The two passwords do not match");
-    } else if (!check_user($email, $db)) {
-            array_push($errors, "email already exists");
+    } else if (!check_user($email)) {
+            array_push($errors, "Email already exists");
     } else {
-        add_user($fullname, $phone, $email, $password_1, $db);
+        add_user($fullname, $phone, $email, $password_1);
     }
 
 } else if($action === "login"){
-    echo "register";
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+  
+    if (empty($email)) {
+        array_push($errors, "Email is required");
+    }
+    if (empty($password)) {
+        array_push($errors, "Password is required");
+    }
+  
+    if (count($errors) == 0) {
+        #$password = md5($password);
+        $user = login_user($email, $password);
+
+        if (!$user) {
+        array_push($errors, "Wrong username/password combination");
+        }else{
+            $_SESSION['email'] = $email;
+            header('location: index.php');
+        }
+    }
+} else if ($action === "logout"){
+    session_destroy();
+    unset($_SESSION['email']);
+    header("location: index.php");
 }
