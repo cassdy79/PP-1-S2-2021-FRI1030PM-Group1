@@ -1,7 +1,6 @@
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/PP-1-S2-2021-FRI1030PM-Group1/controller/server.php";
-include($path)
+$path = $_SERVER['DOCUMENT_ROOT']."/PP-1-S2-2021-FRI1030PM-Group1";
+include($path."/controller/server.php");
 ?>
 <!DOCTYPE html>
 <html>
