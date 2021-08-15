@@ -1,4 +1,6 @@
 <?php
+
+//checks for existing users returns false if user exists
     function check_user($userEmail ){
         global $db;
         $user_check_query = "SELECT * FROM users WHERE email='$userEmail' LIMIT 1";
@@ -11,6 +13,7 @@
         return true;
     }
 
+    //adds user to database
     function add_user($fullname, $phone, $email, $password_1){
         global $db;
         $password = md5($password_1);//encrypt the password before saving in the database
@@ -21,6 +24,7 @@
         $_SESSION['success'] = "Account Creation Successful";
     }
 
+    //checks and returns true if user email and password matches, else returns false
     function login_user($email, $password){
         global $db;
         $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";

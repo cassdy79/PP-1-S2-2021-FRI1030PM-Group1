@@ -1,4 +1,5 @@
 <?php
+//initialize database
 $db = mysqli_connect('localhost', 'root', '', 'carshare');
 
 if (mysqli_connect_errno()) {
