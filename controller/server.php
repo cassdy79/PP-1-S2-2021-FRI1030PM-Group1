@@ -1,8 +1,7 @@
 <?php
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-include('model/database.php');
-$errorPath = "view/layouts/errors.php";
+include($path . '/model/database.php');
+$errorPath = $path . "/view/layouts/errors.php";
 $errors = array(); 
 
 //checks for post or get actions and stores name of function required
