@@ -62,7 +62,7 @@ else if($action === "login"){
     
     //if no errors, login if the details match
     if (count($errors) == 0) {
-        #$password = md5($password);
+        $password = md5($password);
         $user = login_user($email, $password, $db);
 
 
