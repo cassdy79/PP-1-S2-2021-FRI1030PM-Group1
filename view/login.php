@@ -3,7 +3,7 @@
   	<h2>Login</h2>
   </div>
 
-  <form method="post" action="login.php">
+  <form method="post" action="login">
   <input type="hidden" name="post" value="login">
   <?php include($errorPath); ?>
   	<div class="input-group">

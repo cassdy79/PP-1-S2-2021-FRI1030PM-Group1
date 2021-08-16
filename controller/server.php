@@ -1,17 +1,14 @@
 <?php
-session_start();
-include($path."/model/database.php");
-$errorPath = $path."/view/layouts/errors.php";
+
+$path = $_SERVER['DOCUMENT_ROOT'];
+include('model/database.php');
+$errorPath = "view/layouts/errors.php";
 $errors = array(); 
 
 //checks for post or get actions and stores name of function required
 $action = filter_input(INPUT_POST, 'post', FILTER_SANITIZE_STRING);
 if (!$action) {
     $action = filter_input(INPUT_GET, 'get', FILTER_SANITIZE_STRING);
-    if (!$action){
-        if (isset($_GET['logout'])){
-        $action = "logout";}
-    }
 }
 //if action was register
 if ($action === "register"){
@@ -41,12 +38,12 @@ if ($action === "register"){
             array_push($errors, "The two passwords do not match");
     } 
     //checks if user exists    
-    else if (!check_user($email)) {
+    else if (!check_user($email, $db)) {
             array_push($errors, "Email already exists");
     } 
     //adds if no issues
     else {
-        add_user($fullname, $phone, $email, $password_1);
+        add_user($fullname, $phone, $email, $password_1, $db);
     }
 
 } 
@@ -67,19 +64,14 @@ else if($action === "login"){
     //if no errors, login if the details match
     if (count($errors) == 0) {
         #$password = md5($password);
-        $user = login_user($email, $password);
+        $user = login_user($email, $password, $db);
 
 
         if (!$user) {
         array_push($errors, "Wrong username/password combination");
         }else{
             $_SESSION['email'] = $email;
-            header('location: index.php');
+            header('location: /');
         }
     }
 } 
-//if action was logout
-else if ($action === "logout"){
-    session_destroy();
-    header("location: index.php");
-}
