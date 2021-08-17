@@ -6,7 +6,7 @@
     <h2>Create Account</h2>
 </div>
 	
-  <form method="post" action="register.php">
+  <form method="post" action="register">
   <?php include($errorPath); ?>
 	 	<?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >

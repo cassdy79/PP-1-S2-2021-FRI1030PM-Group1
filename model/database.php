@@ -2,6 +2,9 @@
 //initialize database
 $db = mysqli_connect('localhost', 'root', '', 'carshare');
 
+//production
+#$db = mysqli_connect('us-cdbr-east-04.cleardb.com', 'b290796b602b29', 'aea8cc11', 'heroku_cb3473d4565ce7e');
+
 if (mysqli_connect_errno()) {
     printf(mysqli_connect_error());
     exit();
@@ -22,4 +25,4 @@ if($check === FALSE)
      mysqli_query($db, $query);
 }
 
-include("users.php");
+include($path ."/model/users.php");
