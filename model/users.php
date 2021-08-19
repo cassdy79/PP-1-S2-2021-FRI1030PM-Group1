@@ -33,3 +33,13 @@
         }
         return false;
     }
+	
+	//selects all user information ready for display
+	function showProfile($db) {
+	$profile_query = "select * from users where email='".$_SESSION['email']."'";
+	$presult = mysqli_query($db, $profile_query);
+	     if (mysqli_num_rows($presult) == 1) {
+            return $presult;
+        }
+        return false;
+    }
