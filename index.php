@@ -16,6 +16,10 @@ route('/register', function(){
     include('view/register.php');
 });
 
+route('/profile', function(){
+    include('view/profile.php');
+});
+
 route('/logout', function(){
     session_destroy();
     header("location: /");
