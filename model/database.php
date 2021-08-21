@@ -10,6 +10,7 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
+#mysqli_query($db, 'DROP TABLE users');
 $check = mysqli_query($db, 'select 1 from `users` LIMIT 1');
 
 if($check === FALSE)
@@ -19,10 +20,14 @@ if($check === FALSE)
         `fullname` varchar(100) NOT NULL,
         `phone` varchar(100) NOT NULL,
         `email` varchar(100) NOT NULL,
-        `password` varchar(100) NOT NULL
-      )";
-
-     mysqli_query($db, $query);
+        `password` varchar(100) NOT NULL,
+        `role` varchar(10) NOT NULL
+    )";
+    $password = md5("admin123");
+    $adminQuery = "INSERT INTO users (fullname, phone, email, password, role)  VALUES
+    ('Admin', '0000-000-000', 'admin@admin.com', '$password', 'admin')";
+    mysqli_query($db, $query);
+    mysqli_query($db, $adminQuery);
 }
 
 include($path ."/model/users.php");

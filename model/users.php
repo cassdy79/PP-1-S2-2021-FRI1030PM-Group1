@@ -17,8 +17,8 @@
 
         $password = md5($password_1);//encrypt the password before saving in the database
 
-        $query = "INSERT INTO users (fullname, phone, email, password) 
-                  VALUES('$fullname', '$phone',  '$email', '$password')";
+        $query = "INSERT INTO users (fullname, phone, email, password, role) 
+                VALUES('$fullname', '$phone',  '$email', '$password', 'user')";
         mysqli_query($db, $query);
         $_SESSION['success'] = "Account Creation Successful";
     }
@@ -39,7 +39,8 @@
 	$profile_query = "select * from users where email='".$_SESSION['email']."'";
 	$presult = mysqli_query($db, $profile_query);
 	     if (mysqli_num_rows($presult) == 1) {
-            return $presult;
+            $user = mysqli_fetch_array($presult);
+            return $user;
         }
         return false;
     }
