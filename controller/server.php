@@ -3,7 +3,12 @@
 include($path . '/model/database.php');
 $errorPath = $path . "/view/layouts/errors.php";
 $errors = array(); 
-
+if (isset($_SESSION['email'])) {
+	$user = showProfile($db);
+    if($user['role'] === "admin"){
+        $_SESSION['admin'] = True;
+    }
+}
 //checks for post or get actions and stores name of function required
 $action = filter_input(INPUT_POST, 'post', FILTER_SANITIZE_STRING);
 if (!$action) {

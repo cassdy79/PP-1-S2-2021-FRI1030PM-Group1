@@ -1,12 +1,7 @@
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
 include($path . '/controller/server.php');
-if (isset($_SESSION['email'])) {
-	$user = showProfile($db);
-    if($user['role'] === "admin"){
-        $_SESSION['admin'] = True;
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html>
