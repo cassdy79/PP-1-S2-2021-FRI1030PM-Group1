@@ -105,4 +105,13 @@
   }
   
   
-  
+  .details {
+    float: left;
+  }
+
+  .profile {
+    float: left;
+    width:150px;
+    position: relative;
+    
+}

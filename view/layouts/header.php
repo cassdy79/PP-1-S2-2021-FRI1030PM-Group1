@@ -1,6 +1,7 @@
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
 include($path . '/controller/server.php');
+
 ?>
 <!DOCTYPE html>
 <html>

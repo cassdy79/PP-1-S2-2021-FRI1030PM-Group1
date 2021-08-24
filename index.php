@@ -20,6 +20,10 @@ route('/profile', function(){
     include('view/profile.php');
 });
 
+route('/admin', function(){
+    include('view/admin.php');
+});
+
 route('/logout', function(){
     session_destroy();
     header("location: /");
