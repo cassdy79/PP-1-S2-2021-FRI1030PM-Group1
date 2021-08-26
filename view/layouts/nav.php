@@ -5,6 +5,7 @@
         <?php if(isset($_SESSION['admin'])) : ?>
             <a href=admin>&nbsp;Admin Dashboard&nbsp;</a>
         <?php endif; ?>
+        <a href=map>&nbsp;Map&nbsp;</a>
         <a href=logout>&nbsp;Logout&nbsp;</a>
     <?php else : ?>
         <a href='/'>&nbsp;Home&nbsp;</a>
