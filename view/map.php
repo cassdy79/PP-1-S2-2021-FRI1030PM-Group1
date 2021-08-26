@@ -1,5 +1,9 @@
 <?php include('layouts/header.php') ;
 
+if (!isset($_SESSION['email'])) {
+        header("location: /");
+}
+
 $array = getNullLocations($db);
 $array = json_encode($array, true);
 echo '<div id="locdata"> '.$array.' </div>';
