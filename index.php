@@ -24,9 +24,14 @@ route('/admin', function(){
     include('view/admin.php');
 });
 
+route('/map', function(){
+    include('view/map.php');
+});
+
+
 route('/logout', function(){
     session_destroy();
-    header("location: /");
+    header("location: /map");
 });
 
 $action = $_SERVER['REQUEST_URI'];

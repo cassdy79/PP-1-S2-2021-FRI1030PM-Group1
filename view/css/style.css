@@ -26,7 +26,23 @@
     background: white;
     border-radius: 0px 0px 10px 10px;
   }
-  
+  #map {
+    height: 100%;
+  }
+
+  #locdata, #locdata2 {
+    display: none;
+  }
+
+.map_container {
+  height: 600px;
+  width: 800px;
+  margin: 0px auto;
+  padding: 20px;
+  border: 1px solid #B0C4DE;
+  background: white;
+  border-radius: 0px 0px 10px 10px;
+}
   .input-group {
     margin: 10px 0px 10px 0px;
   }
@@ -115,3 +131,5 @@
     position: relative;
     
 }
+
+

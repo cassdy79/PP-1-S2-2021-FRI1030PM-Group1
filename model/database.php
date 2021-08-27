@@ -12,6 +12,7 @@ if (mysqli_connect_errno()) {
 
 #mysqli_query($db, 'DROP TABLE users');
 $check = mysqli_query($db, 'select 1 from `users` LIMIT 1');
+$check2 = mysqli_query($db, 'select 1 from `locations` LIMIT 1');
 
 if($check === FALSE)
 {
@@ -30,4 +31,22 @@ if($check === FALSE)
     mysqli_query($db, $adminQuery);
 }
 
+if($check2 === FALSE)
+{
+    $query = "CREATE TABLE IF NOT EXISTS `locations` (
+        `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+        `address` varchar(200) NOT NULL,
+        `name` varchar(100) NOT NULL,
+        `lat` float(10.6) NULL,
+        `long` float(10.6) NULL,
+        `occupied` varchar(10) NOT NULL
+    )";
+    //$insertQuery = "INSERT INTO `locations`( `address`, `name`, `lat`, `long`, `occupied`) 
+    //VALUES ('test','test',NULL,NULL,'False')";
+    mysqli_query($db, $query);
+    //mysqli_query($db, $insertQuery);
+}
+
+
 include($path ."/model/users.php");
+include($path ."/model/locations.php");

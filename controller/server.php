@@ -9,6 +9,10 @@ if (isset($_SESSION['email'])) {
         $_SESSION['admin'] = True;
     }
 }
+
+
+
+
 //checks for post or get actions and stores name of function required
 $action = filter_input(INPUT_POST, 'post', FILTER_SANITIZE_STRING);
 if (!$action) {
@@ -77,5 +81,32 @@ else if($action === "login"){
             $_SESSION['email'] = $email;
             header('location: /');
         }
+    }
+} 
+
+else if($action === "insert"){
+    $address = mysqli_real_escape_string($db, $_POST['address']);
+    $name = mysqli_real_escape_string($db, $_POST['name']);
+    
+    //checks for empty entries
+    if (empty($address)) {
+        array_push($errors, "Address is required");
+    }
+    if (empty($name)) {
+        array_push($errors, "Name is required");
+    }
+    
+    //if no errors, login if the details match
+    if (count($errors) == 0) {
+        
+        $location = insertAddress($address, $name, $db);
+
+        if (!$location) {
+            array_push($errors, "Wrong Location");
+            }else{
+                header('location: /map');
+                
+            }
+
     }
 } 
