@@ -5,10 +5,15 @@ $errorPath = $path . "/view/layouts/errors.php";
 $errors = array(); 
 if (isset($_SESSION['email'])) {
 	$user = showProfile($db);
+	$locs = getAllLocs($db);
+	
     if($user['role'] === "admin"){
         $_SESSION['admin'] = True;
     }
 }
+
+
+
 
 
 
@@ -84,6 +89,7 @@ else if($action === "login"){
     }
 } 
 
+//if action was insert
 else if($action === "insert"){
     $address = mysqli_real_escape_string($db, $_POST['address']);
     $name = mysqli_real_escape_string($db, $_POST['name']);
@@ -110,3 +116,34 @@ else if($action === "insert"){
 
     }
 } 
+
+else if($action === "insertcar"){
+	$carname = mysqli_real_escape_string($db, $_POST['carname']);
+    $cartype = mysqli_real_escape_string($db, $_POST['cartype']);
+	$location = mysqli_real_escape_string($db, $_POST['location']);
+	
+	 //checks for empty entries
+    if (empty($carname)) {
+        array_push($errors, "Car Name is required");
+    }
+    if (empty($cartype)) {
+        array_push($errors, "Car Type is required");
+    }
+	if (empty($location)) {
+        array_push($errors, "Location is required");
+    }
+	
+	 //if no errors, login if the details match
+    if (count($errors) == 0) {
+        
+        $car = add_Car($carname, $cartype, $location, $db);
+		
+		 if (!$car) {
+            array_push($errors, "Car not added");
+            }else{
+                header('location: /addcar');
+                
+            }
+		
+	}
+}
