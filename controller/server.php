@@ -6,6 +6,7 @@ $errors = array();
 if (isset($_SESSION['email'])) {
 	$user = showProfile($db);
 	$locs = getAllLocs($db);
+	$users = getAllUsers($db);
 	
     if($user['role'] === "admin"){
         $_SESSION['admin'] = True;
@@ -133,7 +134,7 @@ else if($action === "insertcar"){
         array_push($errors, "Location is required");
     }
 	
-	 //if no errors, login if the details match
+	 //if no errors, add car if the details match
     if (count($errors) == 0) {
         
         $car = add_Car($carname, $cartype, $location, $db);
@@ -147,3 +148,18 @@ else if($action === "insertcar"){
 		
 	}
 }
+
+else if($action === "addadmin"){
+	$acc = mysqli_real_escape_string($db, $_POST['account']);
+	
+	 //checks for empty entries
+    if (empty($acc)) {
+        array_push($errors, "User is required");
+    }
+	
+	 //if no errors, give admin if the details match
+    if (count($errors) == 0) {
+		$admin = giveAdmin($acc, $db);	
+            }	
+			 header('location: /addadmin');
+	}

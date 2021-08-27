@@ -44,3 +44,29 @@
         }
         return false;
     }
+	
+	function getAllUsers($db){
+    $query = "SELECT * FROM users where role='user'";
+    
+    $allUsers = mysqli_query($db, $query);
+    $users = [];
+    if (mysqli_num_rows($allUsers) !==0){
+    $count = 0;
+    while($row = mysqli_fetch_assoc($allUsers)) {
+        $users[$count]=$row;
+        $count ++;
+    }
+
+    } 
+    return $users;
+
+}
+
+	function giveAdmin($account, $db){
+		$query = "UPDATE users 
+					SET role = 'admin'
+					WHERE id = '$account'";
+	
+		mysqli_query($db, $query);
+		$_SESSION['success'] = "Admin Add Successful";
+}	

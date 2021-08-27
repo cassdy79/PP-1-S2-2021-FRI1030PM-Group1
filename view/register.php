@@ -37,7 +37,7 @@
 	</div>
 
   	<div class="input-group">
-  	  <label>Password (8 Characters)</label>
+  	  <label>Password</label>
   	  <input type="password" name="password_1"  required>
   	</div>
 

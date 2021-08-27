@@ -32,6 +32,10 @@ route('/addcar', function(){
     include('view/addcar.php');
 });
 
+route('/addadmin', function(){
+    include('view/addadmin.php');
+});
+
 
 route('/logout', function(){
     session_destroy();
