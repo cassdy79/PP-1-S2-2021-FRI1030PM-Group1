@@ -28,6 +28,10 @@ route('/map', function(){
     include('view/map.php');
 });
 
+route('/addcar', function(){
+    include('view/addcar.php');
+});
+
 
 route('/logout', function(){
     session_destroy();
