@@ -4,14 +4,15 @@
   }
   body {
     font-size: 120%;
-    background: #F8F8FF;
+    background: #202020;
+    font-family: sans-serif;
   }
-  
+
   .header {
     width: 30%;
     margin: 50px auto 0px;
     color: white;
-    background: #5F9EA0;
+    background: #C31437;
     text-align: center;
     border: 1px solid #B0C4DE;
     border-bottom: none;
@@ -23,8 +24,12 @@
     margin: 0px auto;
     padding: 20px;
     border: 1px solid #B0C4DE;
-    background: white;
+    background: #292929;
     border-radius: 0px 0px 10px 10px;
+  }
+
+  form, .label {
+    color: white;
   }
   #map {
     height: 100%;
@@ -63,7 +68,7 @@
     padding: 10px;
     font-size: 15px;
     color: white;
-    background: #5F9EA0;
+    background: #C31437;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -73,37 +78,37 @@
     background-color: greenyellow;
   }
   .error {
-    width: 92%; 
-    margin: 0px auto; 
-    padding: 10px; 
-    border: 1px solid #a94442; 
-    color: #a94442; 
-    background: #f2dede; 
-    border-radius: 5px; 
+    width: 92%;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
     text-align: left;
   }
   .success {
-    color: #3c763d; 
-    background: #dff0d8; 
+    color: #3c763d;
+    background: #dff0d8;
     border: 1px solid #3c763d;
     margin-bottom: 20px;
   }
-  
-  
+
+
   nav{
     width: 75%;
     margin: 50px auto 0px;
     color: white;
     font-size: 20px;
     font-weight: bold;
-    background: #5F9EA0;
+    background: #C31437;
     text-align: center;
     border: 1px solid #B0C4DE;
     border-bottom: none;
     border-radius: 10px 10px 10px 10px;
     padding: 20px;
   }
-  
+
   td {
     text-align: center;
     vertical-align: middle;
@@ -111,16 +116,16 @@
   a:link {
     color: white;
   }
-  
+
   a:visited {
     color: white;
   }
-  
+
   a:hover {
     color: black;
   }
-  
-  
+
+
   .details {
     float: left;
   }
@@ -129,7 +134,5 @@
     float: left;
     width:150px;
     position: relative;
-    
+
 }
-
-
