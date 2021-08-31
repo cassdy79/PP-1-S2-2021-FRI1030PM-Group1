@@ -19,6 +19,12 @@
     border-radius: 10px 10px 0px 0px;
     padding: 20px;
   }
+
+.content {
+  color: white;
+  padding: 20px;
+}
+
   form, .content {
     width: 30%;
     margin: 0px auto;
@@ -45,8 +51,24 @@
   margin: 0px auto;
   padding: 20px;
   border: 1px solid #B0C4DE;
-  background: white;
+  background: #202020;
   border-radius: 0px 0px 10px 10px;
+}
+
+.mapHeader {width: 30%;
+margin: 50px auto 0px;
+color: white;
+background: #C31437;
+text-align: center;
+border: 1px solid #B0C4DE;
+border-bottom: none;
+border-radius: 10px 10px 0px 0px;
+padding: 20px;
+  width: 800px;
+}
+
+.homeLogo {
+  width:inherit;
 }
   .input-group {
     margin: 10px 0px 10px 0px;

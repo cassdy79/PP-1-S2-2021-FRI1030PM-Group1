@@ -15,7 +15,7 @@ echo '<div id="locdata2">'.$allLocs.'</div>';
 
 
 
-<div class="header">
+<div class="mapHeader">
 	<h2>Map</h2>
 
 </div>
@@ -23,7 +23,7 @@ echo '<div id="locdata2">'.$allLocs.'</div>';
 
 <div class="map_container">
 <div id="map">
-        
+
         </div>
         </div>
 
