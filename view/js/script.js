@@ -40,19 +40,31 @@ function marker(location) {
       title: location['name'],
       animation: google.maps.Animation.DROP,
       optimized: false,
+      icon: "/view/images/default.png"
     });
+    carString = "EMPTY";
+    buttondisabled = "";
+
+    if (location["car"]) {
+      carString = location["car"]["carName"] + '('+location["car"]["carType"]+')';
+    } else {
+      carString = "No car available at this moment";
+      buttondisabled = "disabled"
+      marker.setIcon("/view/images/grey.png")
+    }
     
     const contentString =
 
     '<h3 id="firstHeading" class="firstHeading">'+location["name"]+'</h3>' +
     '<div id="bodyContent"> <br>' +
 
-    "<p><b>Stuff</b>"+
+    '<h4>Available Car: </h4><p>'+ carString+ '</p></br>'+
     '<form method="post" action="#">' +
     '<input type="hidden" name="post" value="booking">' +
     '<input type="hidden" name="bookingID" value='+location["id"]+'>' +
+    
     '<div class="input-group">' +
-    '<button type="submit" class="btn" name="booking">Book</button>'+
+    '<button type="submit" class="btn" name="booking" '+buttondisabled+'>Book</button>'+
     "</div>"+
     "</form>"+
     "</div>";

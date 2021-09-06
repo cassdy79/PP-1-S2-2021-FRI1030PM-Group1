@@ -4,6 +4,8 @@ if (!isset($_SESSION['email'])) {
 	 header("location: /");
 }
 
+$emptyLocs = getAllEmptyLocs($db);
+
 ?>
 
 <div class="header">
@@ -25,9 +27,9 @@ if (!isset($_SESSION['email'])) {
 	<div class="input-group">
 <label for="location">Select Location :</label>
  <select id="location" name="location">>
-	<option value="" </option>Select Location
+	<option value=""> </option>Select Location
 				<?php 
-				foreach ($locs as $loc) {
+				foreach ($emptyLocs as $loc) {
 						echo '<option value ='.$loc['id'].'>Address: '.$loc['address'].'</option>' ;	
 				}
 					?>

@@ -27,6 +27,16 @@
     border-radius: 0px 0px 10px 10px;
   }
 
+  #hiddenControls {
+    width: 30%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: white;
+    border-radius: 0px 0px 10px 10px;
+    display:block;
+  }
+
   #map {
     height: 100%;
   }
@@ -69,10 +79,12 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  .btn:hover{
+
+  .btn:disabled {
+    background: #575757;
     cursor: pointer;
-    background-color: greenyellow;
   }
+
   .error {
     width: 92%; 
     margin: 0px auto; 

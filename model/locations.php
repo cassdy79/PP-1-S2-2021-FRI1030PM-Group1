@@ -20,11 +20,15 @@ function getNullLocations($db){
         $locs[$count]=$row;
         $count ++;
     }
-        
-        
     } 
     
     return $locs;
+}
+
+function setOccupied($value, $id, $db){
+
+    $insertQuery = "UPDATE `locations` SET `occupied` = '$value' WHERE `locations`.`id` = ".$id."";
+    mysqli_query($db, $insertQuery);
 }
 
 function getAllLocs($db){
@@ -36,6 +40,24 @@ function getAllLocs($db){
     $count = 0;
     while($row = mysqli_fetch_assoc($allLocations)) {
         $locs[$count]=$row;
+        $locs[$count]["car"] = get_car($row['id'], $db);
+        $count ++;
+    }
+
+    } 
+    return $locs;
+
+}
+
+function getAllEmptyLocs($db){
+    $query = "select * from locations where occupied='False'";
+    $allLocations = mysqli_query($db, $query);
+    $locs = [];
+    if (mysqli_num_rows($allLocations) !==0){
+    $count = 0;
+    while($row = mysqli_fetch_assoc($allLocations)) {
+        $locs[$count]=$row;
+        $locs[$count]["car"] = get_car($row['id'], $db);
         $count ++;
     }
 

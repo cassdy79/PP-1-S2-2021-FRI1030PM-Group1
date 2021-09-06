@@ -15,6 +15,8 @@ $check = mysqli_query($db, 'select 1 from `users` LIMIT 1');
 $check2 = mysqli_query($db, 'select 1 from `locations` LIMIT 1');
 $check3 = mysqli_query($db, 'select 1 from `cars` LIMIT 1');
 
+
+
 if($check === FALSE)
 {
     $query = "CREATE TABLE IF NOT EXISTS `users` (
@@ -60,6 +62,21 @@ if($check3 === FALSE)
 	mysqli_query($db, $query);
 }
 
+
+
 include($path ."/model/users.php");
 include($path ."/model/locations.php");
 include($path ."/model/cars.php");
+
+function dropTables($db, $table){
+    if($table === "cars"){
+        $query = "SELECT * FROM locations";
+        $allLocations = mysqli_query($db, $query);
+        if (mysqli_num_rows($allLocations) !==0){
+            while($row = mysqli_fetch_assoc($allLocations)) {
+            setOccupied("False", $row["id"], $db);
+            }
+        }
+    }
+    mysqli_query($db, 'DROP TABLE '.$table);
+}

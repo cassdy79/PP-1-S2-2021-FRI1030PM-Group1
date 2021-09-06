@@ -4,9 +4,6 @@ if (!isset($_SESSION['admin'])) {
 	header("location: /");
 }
 
-
-
-
 ?>
 
 <div class="header">
@@ -29,5 +26,16 @@ if (!isset($_SESSION['admin'])) {
   	</div>
   </form>
 
-
+  <div id="hiddenControls">
+<form method="post" action="admin">
+  <input type="hidden" name="post" value="drop">
+  <input type="hidden" name="action" value="cars">
+  		<button type="submit" class="btn" name="insert">Drop Cars</button>
+</form>
+<form method="post" action="admin">
+  <input type="hidden" name="post" value="drop">
+  <input type="hidden" name="action" value="location">
+  		<button type="submit" class="btn" name="insert">Drop Locations</button>
+</form>
+</div>
 <?php include('layouts/footer.php') ?>

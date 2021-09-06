@@ -170,3 +170,11 @@ else if($action === "booking"){
 
 header('location: /booking?id='.$bookingID);
 } 
+
+else if($action === "drop"){
+    $dropper =  $_POST['action'];
+    dropTables($db, $dropper);
+    header('location: /');
+} 
+
+
