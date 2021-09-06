@@ -7,3 +7,4 @@ function add_Car($carname, $cartype, $location, $db){
         $_SESSION['success'] = "Car Added Successfully";
 		return True;
 }
+

@@ -163,3 +163,10 @@ else if($action === "addadmin"){
             }	
 			 header('location: /addadmin');
 	}
+
+
+else if($action === "booking"){
+    $bookingID =  $_POST['bookingID'];
+
+header('location: /booking?id='.$bookingID);
+} 

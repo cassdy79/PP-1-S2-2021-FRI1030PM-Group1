@@ -1,5 +1,6 @@
 let map;
 var geocoder
+var infoWindow;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -7,7 +8,8 @@ function initMap() {
     zoom: 11,
   });
 
-
+  infoWindow = new google.maps.InfoWindow({ maxWidth: 300,
+  });
 
   var addresses = JSON.parse(document.getElementById("locdata").innerHTML);
   geocoder = new google.maps.Geocoder();
@@ -19,7 +21,6 @@ function initMap() {
     
   }
   var locations = JSON.parse(document.getElementById("locdata2").innerHTML);
-  console.log(locations)
   showMarkers(locations);
   
 }
@@ -31,10 +32,39 @@ function showMarkers(locations){
 }
 
 function marker(location) {
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(location["lat"],location["long"]),
-    map: map
-  });
+
+  // Create the markers.
+    const marker = new google.maps.Marker({
+      position: new google.maps.LatLng(location["lat"],location["long"]),
+      map: map,
+      title: location['name'],
+      animation: google.maps.Animation.DROP,
+      optimized: false,
+    });
+    
+    const contentString =
+
+    '<h3 id="firstHeading" class="firstHeading">'+location["name"]+'</h3>' +
+    '<div id="bodyContent"> <br>' +
+
+    "<p><b>Stuff</b>"+
+    '<form method="post" action="#">' +
+    '<input type="hidden" name="post" value="booking">' +
+    '<input type="hidden" name="bookingID" value='+location["id"]+'>' +
+    '<div class="input-group">' +
+    '<button type="submit" class="btn" name="booking">Book</button>'+
+    "</div>"+
+    "</form>"+
+    "</div>";
+
+
+
+    marker.addListener("click", () => {
+      infoWindow.close();
+      infoWindow.setContent(contentString);
+      infoWindow.open(marker.getMap(), marker);
+    });
+
 }
 
 function codeAddress(address) {
@@ -43,10 +73,12 @@ function codeAddress(address) {
         map.setCenter(results[0].geometry.location);
         var cds = {}
         cds.id = address["id"]
-        cds.lat = map.getCenter().lat();
+        cds.name = address["name"]
+        cds.address = address["address"]
+        cds.lat = map.getCenter().lat()
         cds.long = map.getCenter().lng()
-        updateNull(cds);
-
+        updateNull(cds)
+        marker(cds)
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
