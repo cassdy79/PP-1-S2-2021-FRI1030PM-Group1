@@ -108,9 +108,10 @@ function updateNull(cds) {
     })
 }
 
-var currentdate = new Date();
+
 
 function setFirst(){
+var currentdate = new Date();
 $('#timepicker1').timepicker({    
     timeFormat: 'HH:mm',
     minTime: currentdate,
@@ -132,3 +133,39 @@ $('#timepicker2').timepicker({
     scrollbar: false});
 }
 
+function hiddenButtons() {
+  function setEmpty(){
+    $("#locForm").css("display","none")
+    $("#locFormHeader").css("display","none")
+    $("#carForm").css("display","none")
+    $("#carFormHeader").css("display","none")
+    $("#assignForm").css("display","none")
+    $("#assignFormHeader").css("display","none")
+    $("#adminForm").css("display","none")
+    $("#adminFormHeader").css("display","none")
+    }
+    
+    $("#locButton").click(function () {
+      setEmpty()
+    $("#locForm").css("display","block")
+    $("#locFormHeader").css("display","block")
+    });
+    
+    $("#carButton").click(function () {
+      setEmpty()
+    $("#carForm").css("display","block")
+    $("#carFormHeader").css("display","block")
+    });
+    
+    $("#assignButton").click(function () {
+      setEmpty()
+    $("#assignForm").css("display","block")
+    $("#assignFormHeader").css("display","block")
+    });
+    
+    $("#adminButton").click(function () {
+      setEmpty()
+    $("#adminForm").css("display","block")
+    $("#adminFormHeader").css("display","block")
+    });
+}

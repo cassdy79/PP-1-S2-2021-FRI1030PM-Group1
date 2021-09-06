@@ -9,12 +9,19 @@ $emptyCars = getNullCars($db);
 
 
 ?>
-
-<div class="header">
-	<h2>Admin Dashboard</h2>
+<br>
+<div id="buttons1">
+<button type="submit"  id="locButton" class="btn" name="insert">Add Location</button>
+<button type="submit"  id="carButton" class="btn" name="insert">Add Car</button>
+<button type="submit"  id="assignButton" class="btn" name="insert">Assign Car</button>
+<button type="submit"  id="adminButton" class="btn" name="insert">Assign Admin</button>
+</div>
+<div class="header" id="locFormHeader">
+	<h2>Add Location</h2>
     
 </div>
-<form method="post" action="">
+
+<form method="post" action="" id="locForm">
   <input type="hidden" name="post" value="insert">
   <?php include($errorPath); ?>
   	<div class="input-group">
@@ -30,11 +37,11 @@ $emptyCars = getNullCars($db);
   	</div>
   </form>
 
-<div class="header">
+<div class="header" id="carFormHeader">
   	<h2>Add Car</h2>
 </div>
 
-<form method="post" action="">
+<form method="post" action="" id="carForm">
 <?php include($errorPath); ?>
 	 	<?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
@@ -61,11 +68,11 @@ $emptyCars = getNullCars($db);
   	</div>
   </form>
 
-  <div class="header">
+  <div class="header" id="assignFormHeader">
   	<h2>Assign Car</h2>
 </div>
 
-  <form method="post" action="">
+  <form method="post" action="" id="assignForm"> 
 	 	<?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
       	<h3>
@@ -106,11 +113,11 @@ $emptyCars = getNullCars($db);
   	</div>
   </form>
 
-  <div class="header">
+  <div class="header" id="adminFormHeader">
   	<h2>Give User Admin Role</h2>
 </div>
 
-<form method="post" action="">
+<form method="post" action="" id="adminForm">
 <?php include($errorPath); ?>
 	 	<?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
@@ -138,13 +145,14 @@ $emptyCars = getNullCars($db);
   		<button type="submit" class="btn" name="insertcar">Give Admin</button>
   	</div>
   </form>
-
-  <div id="hiddenControls">
+<br>
+  <div id="buttons1">
 <form method="post" action="">
   <input type="hidden" name="post" value="drop">
   <input type="hidden" name="action" value="cars">
   		<button type="submit" class="btn" name="insert">Drop Cars</button>
 </form>
+<br>
 <form method="post" action="">
   <input type="hidden" name="post" value="drop">
   <input type="hidden" name="action" value="location">
@@ -153,4 +161,7 @@ $emptyCars = getNullCars($db);
 
 
 </div>
+<script type="text/javascript">
+hiddenButtons()
+</script>
 <?php include('layouts/footer.php') ?>
