@@ -121,7 +121,6 @@ else if($action === "insert"){
 else if($action === "insertcar"){
 	$carname = mysqli_real_escape_string($db, $_POST['carname']);
     $cartype = mysqli_real_escape_string($db, $_POST['cartype']);
-	$location = mysqli_real_escape_string($db, $_POST['location']);
 	
 	 //checks for empty entries
     if (empty($carname)) {
@@ -130,19 +129,45 @@ else if($action === "insertcar"){
     if (empty($cartype)) {
         array_push($errors, "Car Type is required");
     }
-	if (empty($location)) {
-        array_push($errors, "Location is required");
-    }
+
 	
 	 //if no errors, add car if the details match
     if (count($errors) == 0) {
         
-        $car = add_Car($carname, $cartype, $location, $db);
+        $car = add_Car($carname, $cartype, $db);
 		
 		 if (!$car) {
             array_push($errors, "Car not added");
             }else{
-                header('location: /addcar');
+                header('location: /admin');
+                
+            }
+		
+	}
+}
+
+else if($action === "assignCar"){
+	$car = mysqli_real_escape_string($db, $_POST['car']);
+    $location = mysqli_real_escape_string($db, $_POST['location']);
+	
+	 //checks for empty entries
+    if (empty($car)) {
+        array_push($errors, "Car is required");
+    }
+    if (empty($location)) {
+        array_push($errors, "Location is required");
+    }
+
+	
+	 //if no errors, add car if the details match
+    if (count($errors) == 0) {
+        
+        $newLocation = updateCar($car, $location, $db);
+		
+		 if (!$newLocation) {
+            array_push($errors, "Car not added");
+            }else{
+                header('location: /map');
                 
             }
 		
@@ -161,7 +186,7 @@ else if($action === "addadmin"){
     if (count($errors) == 0) {
 		$admin = giveAdmin($acc, $db);	
             }	
-			 header('location: /addadmin');
+			 header('location: /admin');
 	}
 
 
@@ -169,6 +194,13 @@ else if($action === "booking"){
     $bookingID =  $_POST['bookingID'];
 
 header('location: /booking?id='.$bookingID);
+} 
+
+else if($action === "book"){
+    var_dump( $_POST['locationID']);
+    var_dump( $_POST['userID']);
+    var_dump( $_POST['endTime']);
+
 } 
 
 else if($action === "drop"){

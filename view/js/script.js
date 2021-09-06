@@ -108,3 +108,27 @@ function updateNull(cds) {
     })
 }
 
+var currentdate = new Date();
+
+function setFirst(){
+$('#timepicker1').timepicker({    
+    timeFormat: 'HH:mm',
+    minTime: currentdate,
+    maxTime: '23:59',
+    dynamic: false,
+    dropdown: true,
+    scrollbar: false});
+}
+    
+function setSecond() {
+
+$('#timepicker2').timepicker({    
+    timeFormat: 'HH:mm',
+    minTime: '00:30',
+    maxTime: '12:00',
+    defaultTime: "00:30",
+    dynamic: false,
+    dropdown: true,
+    scrollbar: false});
+}
+

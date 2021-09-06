@@ -72,6 +72,7 @@ function getLocationbyID($db, $id){
 	$presult = mysqli_query($db, $query);
 	     if (mysqli_num_rows($presult) == 1) {
             $location = mysqli_fetch_array($presult);
+            $location["car"] = get_car($id, $db);
             return $location;
         }
         return false;
