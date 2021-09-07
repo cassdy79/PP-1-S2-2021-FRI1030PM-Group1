@@ -45,7 +45,7 @@ function marker(location) {
     carString = "EMPTY";
     buttondisabled = "";
 
-    if (location["car"]) {
+    if (location["car"] && location["occupied"] != "False") {
       carString = location["car"]["carName"] + '('+location["car"]["carType"]+')';
     } else {
       carString = "No car available at this moment";
@@ -130,7 +130,17 @@ $('#timepicker2').timepicker({
     defaultTime: "00:30",
     dynamic: false,
     dropdown: true,
-    scrollbar: false});
+    scrollbar: false,
+    change: function(time) {
+      var hours = time.getHours()
+      var minutes = time.getMinutes()/30
+
+      var totalCost = (hours*10) + (minutes*5)
+
+      document.getElementById("cost").value = "$"+totalCost+".00"
+    
+
+  }});
 }
 
 function hiddenButtons() {
@@ -143,6 +153,7 @@ function hiddenButtons() {
     $("#assignFormHeader").css("display","none")
     $("#adminForm").css("display","none")
     $("#adminFormHeader").css("display","none")
+    $("#hiddenControls").css("display","none")
     }
     
     $("#locButton").click(function () {
@@ -167,5 +178,10 @@ function hiddenButtons() {
       setEmpty()
     $("#adminForm").css("display","block")
     $("#adminFormHeader").css("display","block")
+    });
+
+    $("#hiddenButton").click(function () {
+      setEmpty()
+    $("#hiddenControls").css("display","block")
     });
 }

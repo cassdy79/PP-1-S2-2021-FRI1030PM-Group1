@@ -57,7 +57,8 @@ if($check3 === FALSE)
         `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
         `carName` varchar(200) NOT NULL,
         `carType` varchar(100) NOT NULL,
-        `locationID` varchar(100) NULL
+        `locationID` varchar(100) NULL,
+        `booked` varchar(50) NULL
     )";
 	
 	mysqli_query($db, $query);
@@ -72,7 +73,8 @@ if($check4 === FALSE)
         `locationID` varchar(11) NOT NULL,
         `startTime` varchar(100) NOT NULL,
         `endTime` varchar(100) NOT NULL,
-        `estimatedCost` varchar(100) NOT NULL
+        `estimatedCost` varchar(100) NOT NULL,
+        `pastBooking` varchar(100) NULL
     )";
 	
 	mysqli_query($db, $query);
@@ -83,6 +85,7 @@ if($check4 === FALSE)
 include($path ."/model/users.php");
 include($path ."/model/locations.php");
 include($path ."/model/cars.php");
+include($path ."/model/bookings.php");
 
 function dropTables($db, $table){
     if($table === "cars"){

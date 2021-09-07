@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Australia/Melbourne');
 include($path . '/model/database.php');
 $errorPath = $path . "/view/layouts/errors.php";
 $errors = array(); 
@@ -14,7 +14,7 @@ if (isset($_SESSION['email'])) {
 }
 
 
-
+refreshBookings($db);
 
 
 
@@ -114,7 +114,6 @@ else if($action === "insert"){
                 header('location: /map');
                 
             }
-
     }
 } 
 
@@ -197,9 +196,40 @@ header('location: /booking?id='.$bookingID);
 } 
 
 else if($action === "book"){
-    var_dump( $_POST['locationID']);
-    var_dump( $_POST['userID']);
-    var_dump( $_POST['endTime']);
+    $locationID = mysqli_real_escape_string($db, $_POST['locationID']);
+    $userID = mysqli_real_escape_string($db, $_POST['userID']);
+    $carID = mysqli_real_escape_string($db, $_POST['carID']);
+    $startTime = mysqli_real_escape_string($db, $_POST['startTime']);
+    $endTime = mysqli_real_escape_string($db, $_POST['endTime']);
+    $estimatedCost = mysqli_real_escape_string($db, $_POST['cost']);
+
+    if (empty($locationID)) { array_push($errors, "locID is required"); }
+    if (empty($userID)) { array_push($errors, "UserID is required"); }
+    if (empty($carID)) { array_push($errors, "carID is required"); }
+    if (empty($startTime)) { array_push($errors, "start time is required"); }
+    if (empty($endTime)) { array_push($errors, "end time is required"); }
+    if (empty($estimatedCost)) { array_push($errors, "estimated cost is required"); }
+
+    $startDate = strtotime($startTime);
+    $times = explode(':', $endTime);
+    $increaseFormat = '+'.$times[0].' hour +'.$times[1].'minutes';
+
+    $startTime = date("Y-m-d H:i", $startDate);
+    $endTime = date('Y-m-d H:i',strtotime($increaseFormat, $startDate));
+
+
+    if (count($errors) == 0) {
+        
+        $newBooking = addBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost, $db);
+		
+		 if (!$newBooking) {
+            array_push($errors, "Booking not added");
+            }else{
+                header('location: /profile');
+                
+            }
+		
+	}
 
 } 
 

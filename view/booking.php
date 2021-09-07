@@ -46,7 +46,7 @@ if (!$locationDetails) {
 <h7 class="profile"> Car:  </h7><b class="details"><?= $locationDetails["car"]["carName"] ?> (<?= $locationDetails["car"]["carType"] ?>)</b>
 </br>
 </br>
-        
+
                 <div class="input-group">
                 <label>Please select start time of booking</label>
                 <input type="text" id="timepicker1" name="startTime"  required/>
@@ -55,8 +55,9 @@ if (!$locationDetails) {
                 <label>Please select duration of booking</label>
                 <input type="text" id="timepicker2" name="endTime" required/>
                 </div>
-
-
+                <br>
+                <b>Estimated cost : </b><input size="6" type="text" id="cost" name="cost" readonly/>
+                <br>
                 <div class="input-group">
                         <button type="submit" class="btn" name="book">Book</button>
                 </div>
@@ -65,5 +66,6 @@ if (!$locationDetails) {
 <script type="text/javascript">
 setFirst()
 setSecond()
+
 </script>
 <?php include('layouts/footer.php') ?>
