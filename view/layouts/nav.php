@@ -4,8 +4,6 @@
 		<a href=profile>&nbsp;Profile&nbsp;</a>
         <?php if(isset($_SESSION['admin'])) : ?>
             <a href=admin>&nbsp;Admin Dashboard&nbsp;</a>
-			<a href=addcar>&nbsp;Add Car&nbsp;</a>
-			<a href=addadmin>&nbsp;Give Admin&nbsp;</a>
         <?php endif; ?>
         <a href=map>&nbsp;Map&nbsp;</a>
         <a href=logout>&nbsp;Logout&nbsp;</a>

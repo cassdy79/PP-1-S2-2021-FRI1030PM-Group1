@@ -14,6 +14,9 @@ if (mysqli_connect_errno()) {
 $check = mysqli_query($db, 'select 1 from `users` LIMIT 1');
 $check2 = mysqli_query($db, 'select 1 from `locations` LIMIT 1');
 $check3 = mysqli_query($db, 'select 1 from `cars` LIMIT 1');
+$check4 = mysqli_query($db, 'select 1 from `bookings` LIMIT 1');
+
+
 
 if($check === FALSE)
 {
@@ -54,12 +57,45 @@ if($check3 === FALSE)
         `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
         `carName` varchar(200) NOT NULL,
         `carType` varchar(100) NOT NULL,
-        `locationID` varchar(100) NOT NULL
+        `locationID` varchar(100) NULL,
+        `booked` varchar(50) NULL
     )";
 	
 	mysqli_query($db, $query);
 }
 
+if($check4 === FALSE)
+{
+    $query = "CREATE TABLE IF NOT EXISTS `bookings` (
+        `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+        `carID` varchar(11) NOT NULL,
+        `userID` varchar(11) NOT NULL,
+        `locationID` varchar(11) NOT NULL,
+        `startTime` varchar(100) NOT NULL,
+        `endTime` varchar(100) NOT NULL,
+        `estimatedCost` varchar(100) NOT NULL,
+        `pastBooking` varchar(100) NULL
+    )";
+	
+	mysqli_query($db, $query);
+}
+
+
+
 include($path ."/model/users.php");
 include($path ."/model/locations.php");
 include($path ."/model/cars.php");
+include($path ."/model/bookings.php");
+
+function dropTables($db, $table){
+    if($table === "cars"){
+        $query = "SELECT * FROM locations";
+        $allLocations = mysqli_query($db, $query);
+        if (mysqli_num_rows($allLocations) !==0){
+            while($row = mysqli_fetch_assoc($allLocations)) {
+            setOccupied("False", $row["id"], $db);
+            }
+        }
+    }
+    mysqli_query($db, 'DROP TABLE '.$table);
+}

@@ -10,7 +10,7 @@
 
   .header {
     width: 30%;
-    margin: 50px auto 0px;
+    margin: 40px auto 0px;
     color: white;
     background: #C31437;
     text-align: center;
@@ -26,8 +26,53 @@
   height: auto;
 }
 
-  form, .content {
+ 
+
+  #cost {
+    height:30px;
+    font-size:14pt;
+  }
+
+  #currentlyBooked {
+    text-align: center;
+    margin: 0px auto; 
+    margin-bottom: 20px;
+    padding: 20px; 
+    border: 1px solid #a94442; 
+    color: #a94442; 
+    background: #f2dede; 
+    border-radius: 5px; 
+  
+  }
+  #buttons1{
     width: 30%;
+    margin: 0px auto;
+    padding-top: 20px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: white;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  #profileButtons{
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  #hiddenButton {
+    margin-top: 20px;
+    
+  }
+
+  #adminForm, #carForm, #assignForm,
+  #adminFormHeader, #carFormHeader, #assignFormHeader, 
+  #pastContentHeader, #pastContent ,#hiddenControls {
+    display:none;
+  }
+
+  .mapcontent {
+    width: 60%;
     margin: 0px auto;
     padding: 20px;
     border: 1px solid #B0C4DE;
@@ -38,11 +83,31 @@
   form, .label {
     color: white;
   }
+
+  body>form, .content {
+    width: 30%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: #292929;;
+    border-radius: 0px 0px 10px 10px;
+  }
+
+
+  #hiddenControls {
+    width: 30%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: white;
+    border-radius: 10px 10px 10px 10px;
+  }
+
   #map {
     height: 100%;
   }
 
-  #locdata, #locdata2 {
+  #locdata, #locdata2, #bookingdata {
     display: none;
   }
 
@@ -56,7 +121,7 @@
   border-radius: 0px 0px 10px 10px;
 }
 
-.mapHeader {width: 30%;
+.mapHeader {width: 60%;
 margin: 50px auto 0px;
 color: white;
 background: #C31437;
@@ -65,7 +130,6 @@ border: 1px solid #B0C4DE;
 border-bottom: none;
 border-radius: 10px 10px 0px 0px;
 padding: 20px;
-  width: 800px;
 }
 
 .homeLogo {
@@ -97,10 +161,12 @@ padding: 20px;
     border-radius: 5px;
     cursor: pointer;
   }
-  .btn:hover{
+
+  .btn:disabled {
+    background: #575757;
     cursor: pointer;
-    background-color: greenyellow;
   }
+
   .error {
     width: 92%;
     margin: 0px auto;

@@ -28,18 +28,15 @@ route('/map', function(){
     include('view/map.php');
 });
 
-route('/addcar', function(){
-    include('view/addcar.php');
-});
 
-route('/addadmin', function(){
-    include('view/addadmin.php');
+route('/booking\?id=(\d+)', function(){
+    include('view/booking.php');
 });
 
 
 route('/logout', function(){
     session_destroy();
-    header("location: /map");
+    header("location: /");
 });
 
 $action = $_SERVER['REQUEST_URI'];
