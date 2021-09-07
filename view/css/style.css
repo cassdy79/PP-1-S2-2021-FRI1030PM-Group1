@@ -19,9 +19,33 @@
     padding: 20px;
   }
 
+  .mapheader{
+    width: 60%;
+    margin: 40px auto 0px;
+    color: white;
+    background: #5F9EA0;
+    text-align: center;
+    border: 1px solid #B0C4DE;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+  }
+
   #cost {
     height:30px;
     font-size:14pt;
+  }
+
+  #currentlyBooked {
+    text-align: center;
+    margin: 0px auto; 
+    margin-bottom: 20px;
+    padding: 20px; 
+    border: 1px solid #a94442; 
+    color: #a94442; 
+    background: #f2dede; 
+    border-radius: 5px; 
+  
   }
   #buttons1{
     width: 30%;
@@ -34,15 +58,31 @@
     border-radius: 10px 10px 10px 10px;
   }
 
+  #profileButtons{
+    padding-top: 20px;
+    text-align: center;
+  }
+
   #hiddenButton {
     margin-top: 20px;
     
   }
 
-  #locForm, #adminForm, #carForm, #assignForm,
-  #locFormHeader, #adminFormHeader, #carFormHeader, #assignFormHeader, #hiddenControls {
+  #adminForm, #carForm, #assignForm,
+  #adminFormHeader, #carFormHeader, #assignFormHeader, 
+  #pastContentHeader, #pastContent ,#hiddenControls {
     display:none;
   }
+
+  .mapcontent {
+    width: 60%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: white;
+    border-radius: 0px 0px 10px 10px;
+  }
+
 
   body>form, .content {
     width: 30%;
@@ -67,7 +107,7 @@
     height: 100%;
   }
 
-  #locdata, #locdata2 {
+  #locdata, #locdata2, #bookingdata {
     display: none;
   }
 

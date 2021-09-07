@@ -11,6 +11,10 @@ parse_str($url['query'], $params);
 $locationDetails = getLocationbyID($db, $params["id"]);
 if (!$locationDetails) {
         header("location: /map");
+} else if(!$locationDetails["car"]) {
+        header("location: /map");
+} else if($currentBooking){
+        header("location: /map");
 }
 ?>
 

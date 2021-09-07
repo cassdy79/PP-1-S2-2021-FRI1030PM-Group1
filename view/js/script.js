@@ -21,17 +21,18 @@ function initMap() {
     
   }
   var locations = JSON.parse(document.getElementById("locdata2").innerHTML);
-  showMarkers(locations);
+  var ongoingBooking = document.getElementById("bookingdata").innerHTML
+  showMarkers(locations, ongoingBooking);
   
 }
 
-function showMarkers(locations){
-  locations.forEach(location => marker(location)
-) ;
+function showMarkers(locations, ongoingBooking){
+  locations.forEach(location => marker(location, ongoingBooking)
+);
 
 }
 
-function marker(location) {
+function marker(location, ongoingBooking) {
 
   // Create the markers.
     const marker = new google.maps.Marker({
@@ -44,8 +45,12 @@ function marker(location) {
     });
     carString = "EMPTY";
     buttondisabled = "";
-
-    if (location["car"] && location["occupied"] != "False") {
+    if (ongoingBooking == "True"){
+      carString = "Bookings unavailable";
+      buttondisabled = "disabled"
+      marker.setIcon("/view/images/grey.png")
+    }
+    else if (location["car"] && location["occupied"] != "False") {
       carString = location["car"]["carName"] + '('+location["car"]["carType"]+')';
     } else {
       carString = "No car available at this moment";
@@ -90,7 +95,7 @@ function codeAddress(address) {
         cds.lat = map.getCenter().lat()
         cds.long = map.getCenter().lng()
         updateNull(cds)
-        marker(cds)
+        marker(cds, "False")
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
@@ -153,6 +158,10 @@ function hiddenButtons() {
     $("#assignFormHeader").css("display","none")
     $("#adminForm").css("display","none")
     $("#adminFormHeader").css("display","none")
+    $("#pastContent").css("display","none")
+    $("#pastContentHeader").css("display","none")
+    $("#currentContent").css("display","none")
+    $("#currentContentHeader").css("display","none")
     $("#hiddenControls").css("display","none")
     }
     
@@ -178,6 +187,18 @@ function hiddenButtons() {
       setEmpty()
     $("#adminForm").css("display","block")
     $("#adminFormHeader").css("display","block")
+    });
+
+    $("#current").click(function () {
+      setEmpty()
+    $("#currentContent").css("display","block")
+    $("#currentContentHeader").css("display","block")
+    });
+
+    $("#past").click(function () {
+      setEmpty()
+    $("#pastContent").css("display","block")
+    $("#pastContentHeader").css("display","block")
     });
 
     $("#hiddenButton").click(function () {

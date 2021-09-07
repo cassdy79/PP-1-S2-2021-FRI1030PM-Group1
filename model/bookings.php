@@ -10,8 +10,8 @@ function addBooking($carID, $userID, $locationID, $startTime, $endTime, $estimat
 }
 
 
-function getBooking($id, $db){
-	$query = "select * from bookings where id='".$id."'";
+function getCurrentBooking($id, $db){
+	$query = "select * from bookings where userID='".$id."' and pastBooking is NULL";
 		$presult = mysqli_query($db, $query);
 			 if (mysqli_num_rows($presult) == 1) {
 				$book = mysqli_fetch_array($presult);
@@ -23,7 +23,7 @@ function getBooking($id, $db){
 
 function getAllBookingsID($id, $db){
 
-	$query = "select * from bookings where userID='".$id."'";
+	$query = "select * from bookings where userID='".$id."' and pastBooking is not NULL";
     
     $bookings = mysqli_query($db, $query);
     $bookingsArray = [];

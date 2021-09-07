@@ -15,7 +15,7 @@ if (isset($_SESSION['email'])) {
 
 
 refreshBookings($db);
-
+$currentBooking = getCurrentBooking($user["id"], $db);
 
 
 

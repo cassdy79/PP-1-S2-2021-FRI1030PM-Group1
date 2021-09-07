@@ -16,7 +16,6 @@ $emptyCars = getNullCars($db);
 <button type="submit"  id="carButton" class="btn" >Add Car</button>
 <button type="submit"  id="assignButton" class="btn" >Assign Car</button>
 <button type="submit"  id="adminButton" class="btn" >Assign Admin</button>
-
 <button type="submit"  id="hiddenButton" class="btn" >Admin Table controls</button>
 <?php include($errorPath); ?>
 </div>
