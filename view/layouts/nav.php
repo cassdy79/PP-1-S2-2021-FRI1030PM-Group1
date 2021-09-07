@@ -14,6 +14,6 @@
         <a href=login>&nbsp;Login&nbsp;</a>
         <a href=register>&nbsp;Register&nbsp;</a>
     <?php endif; ?>
-    
+
 
 </nav>
