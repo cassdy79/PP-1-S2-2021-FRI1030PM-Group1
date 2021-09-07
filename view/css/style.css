@@ -8,8 +8,7 @@
     font-family: sans-serif;
   }
 
-  .header {
-    width: 30%;
+  .header, .mapHeader {
     margin: 40px auto 0px;
     color: white;
     background: #C31437;
@@ -20,6 +19,18 @@
     padding: 20px;
   }
 
+  .header {
+    width: 30%;
+  }
+
+  #pastContentHeader, #currentContentHeader {
+    width: 50%;
+  }
+
+  .mapHeader {
+    width: 60%;
+    }
+
 .content {
   color: white;
   padding: 20px;
@@ -27,7 +38,9 @@
 }
 
  
-
+  a {
+    text-decoration: none;
+  }
   #cost {
     height:30px;
     font-size:14pt;
@@ -87,10 +100,15 @@
   body>form, .content {
     width: 30%;
     margin: 0px auto;
+    margin-bottom: 30px;
     padding: 20px;
     border: 1px solid #B0C4DE;
     background: #292929;;
     border-radius: 0px 0px 10px 10px;
+  }
+
+  #pastContent, #currentContent {
+    width: 50%;
   }
 
 
@@ -121,16 +139,7 @@
   border-radius: 0px 0px 10px 10px;
 }
 
-.mapHeader {width: 60%;
-margin: 50px auto 0px;
-color: white;
-background: #C31437;
-text-align: center;
-border: 1px solid #B0C4DE;
-border-bottom: none;
-border-radius: 10px 10px 0px 0px;
-padding: 20px;
-}
+
 
 .homeLogo {
   width:60%;
@@ -224,11 +233,12 @@ padding: 20px;
 
   .details {
     float: left;
+    
   }
 
   .profile {
     float: left;
     width:150px;
     position: relative;
-
+    padding-left: 20px;
 }
