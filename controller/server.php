@@ -7,15 +7,15 @@ if (isset($_SESSION['email'])) {
 	$user = showProfile($db);
 	$locs = getAllLocs($db);
 	$users = getAllUsers($db);
-	
+	refreshBookings($db);
+    $currentBooking = getCurrentBooking($user["id"], $db);
     if($user['role'] === "admin"){
         $_SESSION['admin'] = True;
     }
 }
 
 
-refreshBookings($db);
-$currentBooking = getCurrentBooking($user["id"], $db);
+
 
 
 

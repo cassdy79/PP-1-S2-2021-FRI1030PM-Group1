@@ -19,6 +19,7 @@ $emptyCars = getNullCars($db);
 <button type="submit"  id="hiddenButton" class="btn" >Admin Table controls</button>
 <?php include($errorPath); ?>
 </div>
+
 <div class="header" id="locFormHeader">
 	<h2>Add Location</h2>
     
@@ -118,7 +119,8 @@ $emptyCars = getNullCars($db);
   	</div>
   </form>
 <br>
-  <div id="hiddenControls" >
+
+<div id="hiddenControls" >
 
 <form method="post" action="" >
 <input type="hidden" name="post" value="drop">
@@ -129,7 +131,7 @@ $emptyCars = getNullCars($db);
 <label for="bookingsdrop">Bookings</label><br>
 <input type="radio" id="locationsdrop" name="action" value="locations">
 <label for="locationsdrop">Locations</label> 
-<br>
+<br><br>
 <button type="submit" class="btn" name="insert">Drop</button>
 </form>
 

@@ -51,7 +51,7 @@
     text-align: center;
     padding: 20px;
     border: 1px solid #B0C4DE;
-    background: white;
+    background: #202020;
     border-radius: 10px 10px 10px 10px;
   }
 
@@ -64,12 +64,12 @@
     margin-top: 20px;
     
   }
-
   #adminForm, #carForm, #assignForm,
   #adminFormHeader, #carFormHeader, #assignFormHeader, 
   #pastContentHeader, #pastContent ,#hiddenControls {
     display:none;
   }
+
 
   .mapcontent {
     width: 60%;
@@ -99,7 +99,7 @@
     margin: 0px auto;
     padding: 20px;
     border: 1px solid #B0C4DE;
-    background: white;
+    background: #202020;
     border-radius: 10px 10px 10px 10px;
   }
 
