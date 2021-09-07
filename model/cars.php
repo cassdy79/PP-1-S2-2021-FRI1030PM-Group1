@@ -18,8 +18,18 @@ function updateCar($car, $location,  $db){
 		return True;
 }
 
-function get_car($locID, $db){
+function getCarLocID($locID, $db){
 	$query = "select * from cars where locationID='".$locID."'";
+		$presult = mysqli_query($db, $query);
+			 if (mysqli_num_rows($presult) == 1) {
+				$car = mysqli_fetch_array($presult);
+				return $car;
+			}
+			return null;
+}
+
+function getCarID($id, $db){
+	$query = "select * from cars where id='".$id."'";
 		$presult = mysqli_query($db, $query);
 			 if (mysqli_num_rows($presult) == 1) {
 				$car = mysqli_fetch_array($presult);

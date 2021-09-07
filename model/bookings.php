@@ -15,6 +15,8 @@ function getCurrentBooking($id, $db){
 		$presult = mysqli_query($db, $query);
 			 if (mysqli_num_rows($presult) == 1) {
 				$book = mysqli_fetch_array($presult);
+                $book["car"] = getCarID($book['carID'], $db);
+                $book["location"] = getLocationID($book['locationID'], $db);
 				return $book;
 			}
 			return null;
@@ -31,6 +33,8 @@ function getAllBookingsID($id, $db){
     $count = 0;
     while($row = mysqli_fetch_assoc($bookings)) {
         $bookingsArray[$count]=$row;
+        $bookingsArray[$count]["car"] = getCarID($row['carID'], $db);
+        $bookingsArray[$count]["location"] = getLocationID($row['locationID'], $db);
         $count ++;
     }
     } 

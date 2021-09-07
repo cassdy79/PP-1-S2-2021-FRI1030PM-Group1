@@ -28,30 +28,75 @@ $pastBookings = getAllBookingsID($user["id"], $db);
 </div>
 </div>
 
-
-
-
 <div class="header" id="currentContentHeader">
 	<h2>Current Booking</h2>
     
 </div>
 <div class="content" id="currentContent" >
 
-    </div>
+<?php if(!$currentBooking) : ?>
+  N/A
+
+
+<?php else : ?>
+  <h7 class="profile"> Booking ID: </h7> <b class="details"><?= $currentBooking['id'] ?></b>
+</br>
+<h7 class="profile"> Name of pickup:  </h7><b class="details"><?= $currentBooking['location']['name'] ?></b>
+</br>
+  <h7 class="profile"> Address:  </h7><b class="details"><?= $currentBooking['location']['address'] ?></b>
+</br>
+  <h7 class="profile"> Car:  </h7><b class="details"><?= $currentBooking['car']['carName'] ?></b>
+</br>
+<h7 class="profile"> Car Type:  </h7><b class="details"><?= $currentBooking['car']['carType'] ?></b>
+</br>
+<h7 class="profile"> Start-Time: </h7> <b class="details"><?= $currentBooking['startTime'] ?></b>
+</br>
+  <h7 class="profile"> End-Time:  </h7><b class="details"><?= $currentBooking['endTime'] ?></b>
+</br>
+  <h7 class="profile"> Cost:  </h7><b class="details"><?= $currentBooking['estimatedCost'] ?></b>
+</br>
+
+
+
+<?php endif; ?>
+
+
+</div>
 
 <div class="header" id="pastContentHeader">
   	<h2>Past Bookings</h2>
 </div>
 
 <div class="content" id="pastContent">
+<?php if(!$pastBookings) : ?>
+  N/A
 
 
- <?php foreach($pastBookings as $booking): ?>
-  <h7 class="profile"> Booking ID: </h7> <b class="details"><?= $booking['id'] ?></b>
-  
+<?php else : ?>
+<?php foreach($pastBookings as $booking): ?>
 </br>
-<hr>
-  <?php endforeach; ?>
+  <h7 class="profile"> Booking ID: </h7> <b class="details"><?= $booking['id'] ?></b>
+</br>
+<h7 class="profile"> Name of pickup:  </h7><b class="details"><?= $booking['location']['name'] ?></b>
+</br>
+  <h7 class="profile"> Address:  </h7><b class="details"><?= $booking['location']['address'] ?></b>
+</br>
+  <h7 class="profile"> Car:  </h7><b class="details"><?= $booking['car']['carName'] ?></b>
+</br>
+<h7 class="profile"> Car Type:  </h7><b class="details"><?= $booking['car']['carType'] ?></b>
+</br>
+<h7 class="profile"> Start-Time: </h7> <b class="details"><?= $booking['startTime'] ?></b>
+</br>
+  <h7 class="profile"> End-Time:  </h7><b class="details"><?= $booking['endTime'] ?></b>
+</br>
+  <h7 class="profile"> Cost:  </h7><b class="details"><?= $booking['estimatedCost'] ?></b>
+</br>
+</br>
+  <hr>
+<?php endforeach; ?>
+<?php endif; ?>
+
+
 
 
 

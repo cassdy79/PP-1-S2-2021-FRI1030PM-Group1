@@ -40,7 +40,7 @@ function getAllLocs($db){
     $count = 0;
     while($row = mysqli_fetch_assoc($allLocations)) {
         $locs[$count]=$row;
-        $locs[$count]["car"] = get_car($row['id'], $db);
+        $locs[$count]["car"] = getCarLocID($row['id'], $db);
         $count ++;
     }
 
@@ -57,7 +57,7 @@ function getAllEmptyLocs($db){
     $count = 0;
     while($row = mysqli_fetch_assoc($allLocations)) {
         $locs[$count]=$row;
-        $locs[$count]["car"] = get_car($row['id'], $db);
+        $locs[$count]["car"] = getCarLocID($row['id'], $db);
         $count ++;
     }
 
@@ -72,10 +72,18 @@ function getLocationbyID($db, $id){
 	$presult = mysqli_query($db, $query);
 	     if (mysqli_num_rows($presult) == 1) {
             $location = mysqli_fetch_array($presult);
-            $location["car"] = get_car($id, $db);
+            $location["car"] = getCarLocID($id, $db);
             return $location;
         }
         return false;
+}
 
-
+function getLocationID($id, $db){
+	$query = "select * from locations where id='".$id."'";
+		$presult = mysqli_query($db, $query);
+			 if (mysqli_num_rows($presult) == 1) {
+				$location = mysqli_fetch_array($presult);
+				return $location;
+			}
+			return null;
 }
