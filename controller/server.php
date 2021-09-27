@@ -1,5 +1,6 @@
 <?php
 date_default_timezone_set('Australia/Melbourne');
+require_once($path .'/mailer/mail.php');
 include($path . '/model/database.php');
 $errorPath = $path . "/view/layouts/errors.php";
 $errors = array(); 
@@ -58,6 +59,9 @@ if ($action === "register"){
     //adds if no issues
     else {
         add_user($fullname, $phone, $email, $password_1, $db);
+        #registeremail($email,$fullname, $mail);
+        registeremail("cassdycc21@ail.com",$fullname, $mail);
+        
     }
 
 } 
