@@ -11,11 +11,11 @@ parse_str($url['query'], $params);
 $locationDetails = getLocationbyID($db, $params["id"]);
 if (!$locationDetails) {
         header("location: /map");
-} else if(!$locationDetails["car"]) {
-        header("location: /map");
 } else if($currentBooking){
         header("location: /map");
 }
+
+$emptyCars = getNullCars($db);
 ?>
 
 
@@ -38,22 +38,35 @@ if (!$locationDetails) {
       </div>
 <?php endif ?>
 
-<input type="hidden" name="post" value="book">
+<input type="hidden" name="post" value="book2">
 <input type="hidden" name="locationID" value=<?=$locationDetails["id"]?>>
 <input type="hidden" name="userID" value=<?=$user["id"]?>>
-<input type="hidden" name="carID" value=<?= $locationDetails["car"]["id"] ?>>
+
 
 
 
 <h7 class="profile"> Location: </h7> <b class="details"><?= $locationDetails["name"] ?></b>
 </br>
-<h7 class="profile"> Car:  </h7><b class="details"><?= $locationDetails["car"]["carName"] ?> (<?= $locationDetails["car"]["carType"] ?>)</b>
+<label for="location"><h7 class="profile"> Select Car: </h7></label>
+ <select id="car" name="carID" required>
+	<option value=""> </option>Select Location
+				<?php 
+				foreach ($emptyCars as $car) {
+					echo '<option value ='.$car['id'].'>Name: '.$car['carName'].'('.$car['carType'].')</option>' ;	
+				}
+					?>
+				</select>
+				</div>
 </br>
 </br>
 
                 <div class="input-group">
+                <label>Please select Date of booking</label>
+                <input type="text" id="datepicker" name="date" required/>
+                </div>
+                <div class="input-group">
                 <label>Please select start time of booking</label>
-                <input type="text" id="timepicker1" name="startTime"  required readonly/>
+                <input type="text" id="timepicker1" name="startTime" value="N/A" required readonly/>
                 </div>
                 <div class="input-group">
                 <label>Please select duration of booking</label>
@@ -68,7 +81,7 @@ if (!$locationDetails) {
         
 </form>
 <script type="text/javascript">
-setFirst()
+setDate()
 setSecond()
 
 </script>

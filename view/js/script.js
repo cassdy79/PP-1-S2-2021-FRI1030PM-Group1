@@ -169,6 +169,10 @@ function marker(location, ongoingBooking) {
     '<button type="submit" class="btn" name="booking" '+buttondisabled+'>Book</button>'+
     "</div>"+
     "</form>"+
+    '<form method="post" action="#">' +
+    '<input type="hidden" name="post" value="booking2">' +
+    '<input type="hidden" name="bookingID" value='+location["id"]+'>' +
+    '<button type="submit" class="btn" name="booking2">Future Booking</button>'+
     "</div>";
 
 
@@ -210,7 +214,23 @@ function updateNull(cds) {
     })
 }
 
+function setDate(){
+  var currentdate2 = new Date();
+  currentdate2.setDate(currentdate2.getDate() + 1)
+  $("#datepicker").datepicker({
+    minDate:currentdate2,
+    maxDate:14,
+    hideIfNoPrevNext:true,
+  });
 
+  $('#timepicker1').timepicker({    
+    timeFormat: 'HH:mm',
+    minTime: '00:00',
+    maxTime: '23:59',
+    dynamic: false,
+    dropdown: true,
+    scrollbar: false});
+}
 
 function setFirst(){
 var currentdate = new Date();
@@ -228,7 +248,7 @@ function setSecond() {
 $('#timepicker2').timepicker({    
     timeFormat: 'HH:mm',
     minTime: '00:30',
-    maxTime: '12:00',
+    maxTime: '18:00',
     defaultTime: "00:30",
     dynamic: false,
     dropdown: true,

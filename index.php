@@ -33,6 +33,10 @@ route('/booking\?id=(\d+)', function(){
     include('view/booking.php');
 });
 
+route('/booking2\?id=(\d+)', function(){
+    include('view/futureBooking.php');
+});
+
 
 route('/logout', function(){
     session_destroy();
