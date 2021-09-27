@@ -142,9 +142,11 @@ function marker(location, ongoingBooking) {
     });
     carString = "EMPTY";
     buttondisabled = "";
+    buttondisabled2 = "";
     if (ongoingBooking == "True"){
       carString = "Bookings unavailable";
       buttondisabled = "disabled"
+      buttondisabled2 = "disabled";
       marker.setIcon("/view/images/grey.png")
     }
     else if (location["car"] && location["occupied"] != "False") {
@@ -172,7 +174,7 @@ function marker(location, ongoingBooking) {
     '<form method="post" action="#">' +
     '<input type="hidden" name="post" value="booking2">' +
     '<input type="hidden" name="bookingID" value='+location["id"]+'>' +
-    '<button type="submit" class="btn" name="booking2">Future Booking</button>'+
+    '<button type="submit" class="btn" name="booking2"'+buttondisabled2+'>Future Booking</button>'+
     "</div>";
 
 

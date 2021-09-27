@@ -66,6 +66,25 @@ function getAllEmptyLocs($db){
 
 }
 
+function isLocEmpty($locID ,$db){
+    $query = "select * from locations where id='".$locID."' and occupied='False'";
+    $allLocations = mysqli_query($db, $query);
+    $locs = [];
+    if (mysqli_num_rows($allLocations) !==0){
+    $count = 0;
+    while($row = mysqli_fetch_assoc($allLocations)) {
+        $locs[$count]=$row;
+        $count ++;
+    }
+
+    } 
+    if (count($locs) == 0)
+        return false;
+    else {
+        return $locs;
+    }
+}
+
 function getLocationbyID($db, $id){
     $query = "select * from locations where id='".$id."'";
     

@@ -64,4 +64,21 @@ function getNullCars($db){
     } 
     
     return $cars;
+} 
+
+function getLocationButNullCars($db){
+
+	$query = "SELECT * FROM `cars` WHERE `locationID` is NOT NULL AND `booked` is NULL";
+    
+    $nullcars = mysqli_query($db, $query);
+    $cars = [];
+    if (mysqli_num_rows($nullcars) !==0){
+    $count = 0;
+    while($row = mysqli_fetch_assoc($nullcars)) {
+        $cars[$count]=$row;
+        $count ++;
+    }
+    } 
+    
+    return $cars;
 }

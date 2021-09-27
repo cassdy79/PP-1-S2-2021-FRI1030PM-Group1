@@ -66,12 +66,12 @@ function bookingComplete($id, $db) {
 
 function refreshBookings($db) {
     $bookings = getAllActiveBookings($db);
+    $nullCars = getLocationButNullCars($db);
     if($bookings){
         foreach ($bookings as $booking) {
             $endDate =  new DateTime($booking["endTime"]);
             $startDate = new DateTime($booking["startTime"]);
             $now = new DateTime();
-            
             if($startDate < $now) {
                 setOccupied("False", $booking["locationID"], $db);
             }
@@ -83,5 +83,14 @@ function refreshBookings($db) {
 
 
     } 
+
+    if($nullCars){
+        foreach ($nullCars as $car) {
+            if(isLocEmpty($car['locationID'], $db)){
+                setOccupied("True", $car["locationID"], $db);
+            }
+            
+        }
+    }
 
 }
