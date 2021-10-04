@@ -37,6 +37,9 @@ route('/booking2\?id=(\d+)', function(){
     include('view/futureBooking.php');
 });
 
+route('/payment\?id=(\d+)', function(){
+    include('view/payment.php');
+});
 
 route('/logout', function(){
     session_destroy();

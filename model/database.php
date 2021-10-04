@@ -15,6 +15,7 @@ $check = mysqli_query($db, 'select 1 from `users` LIMIT 1');
 $check2 = mysqli_query($db, 'select 1 from `locations` LIMIT 1');
 $check3 = mysqli_query($db, 'select 1 from `cars` LIMIT 1');
 $check4 = mysqli_query($db, 'select 1 from `bookings` LIMIT 1');
+$check5 = mysqli_query($db, 'select 1 from `unpaidbookings` LIMIT 1');
 
 
 
@@ -80,12 +81,30 @@ if($check4 === FALSE)
 	mysqli_query($db, $query);
 }
 
+if($check5 === FALSE)
+{
+    $query = "CREATE TABLE IF NOT EXISTS `unpaidbookings` (
+        `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+        `carID` varchar(11) NOT NULL,
+        `userID` varchar(11) NOT NULL,
+        `locationID` varchar(11) NOT NULL,
+        `startTime` varchar(100) NOT NULL,
+        `endTime` varchar(100) NOT NULL,
+        `estimatedCost` varchar(100) NOT NULL,
+        `paid` varchar(100) NULL,
+        `timeOfBooking` varchar(100) NOT NULL
+    )";
+	
+	mysqli_query($db, $query);
+}
+
 
 
 include($path ."/model/users.php");
 include($path ."/model/locations.php");
 include($path ."/model/cars.php");
 include($path ."/model/bookings.php");
+include($path ."/model/unpaidbookings.php");
 
 function dropTables($db, $table){
     if($table === "cars"){

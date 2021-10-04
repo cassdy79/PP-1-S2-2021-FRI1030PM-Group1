@@ -229,13 +229,14 @@ else if($action === "book"){
 
 
     if (count($errors) == 0) {
-        
-        $newBooking = addBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost, $db);
-		
-		 if (!$newBooking) {
+        $time = (new DateTime())->format('Y-m-d H:i:s');
+        //header('location: /payment?id='.$bookingObject);
+        $newBooking = addUnpaidBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost,$time, $db);
+		if (!$newBooking) {
             array_push($errors, "Booking not added");
             }else{
-                header('location: /profile');
+                $unpaidBooking = getCurrentUnpaidBookingIDs($carID, $userID, $locationID, $time, $db);
+                header('location: /payment?id='.$unpaidBooking['id']);
                 
             }
 		
@@ -270,14 +271,46 @@ else if($action === "book2"){
     $endTime = date('Y-m-d H:i',strtotime($increaseFormat, $startDate));
 
     if (count($errors) == 0) {
-        
+        $time = (new DateTime())->format('Y-m-d H:i:s');
+        //header('location: /payment?id='.$bookingObject);
+        $newBooking = addUnpaidBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost,$time, $db);
+		if (!$newBooking) {
+            array_push($errors, "Booking not added");
+            }else{
+                $unpaidBooking = getCurrentUnpaidBookingIDs($carID, $userID, $locationID, $time, $db);
+                header('location: /payment?id='.$unpaidBooking['id']);
+                
+            }
+		
+	}
+
+} 
+
+
+else if($action === "payment"){
+    $locationID = mysqli_real_escape_string($db, $_POST['locationID']);
+    $bookID = mysqli_real_escape_string($db, $_POST['id']);
+    $userID = mysqli_real_escape_string($db, $_POST['userID']);
+    $carID = mysqli_real_escape_string($db, $_POST['carID']);
+    $startTime = mysqli_real_escape_string($db, $_POST['startTime']);
+    $endTime = mysqli_real_escape_string($db, $_POST['endTime']);
+    $estimatedCost = mysqli_real_escape_string($db, $_POST['estimatedCost']);
+
+    if (empty($locationID)) { array_push($errors, "locID is required"); }
+    if (empty($userID)) { array_push($errors, "UserID is required"); }
+    if (empty($carID)) { array_push($errors, "carID is required"); }
+    if (empty($startTime))  { array_push($errors, "start time is required"); }
+    if (empty($endTime)) { array_push($errors, "end time is required"); }
+    if (empty($estimatedCost)) { array_push($errors, "estimated cost is required"); }
+
+    if (count($errors) == 0) {
         $newBooking = addBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost, $db);
 		
 		if (!$newBooking) {
             array_push($errors, "Booking not added");
             }else{
+                setBookingPaid("True",$bookID,$db);
                 header('location: /profile');
-                
             }
 		
 	}
