@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set('Australia/Melbourne');
 #require_once($path .'/mailer/mail.php');
+#include($path .'/payment/stripe.php');
 include($path . '/model/database.php');
 $errorPath = $path . "/view/layouts/errors.php";
 $errors = array(); 
@@ -236,7 +237,7 @@ else if($action === "book"){
             array_push($errors, "Booking not added");
             }else{
                 $unpaidBooking = getCurrentUnpaidBookingIDs($carID, $userID, $locationID, $time, $db);
-                header('location: /payment?id='.$unpaidBooking['id']);
+                header('location: /checkout?id='.$unpaidBooking['id']);
                 
             }
 		
@@ -278,7 +279,7 @@ else if($action === "book2"){
             array_push($errors, "Booking not added");
             }else{
                 $unpaidBooking = getCurrentUnpaidBookingIDs($carID, $userID, $locationID, $time, $db);
-                header('location: /payment?id='.$unpaidBooking['id']);
+                header('location: /checkout?id='.$unpaidBooking['id']);
                 
             }
 		
@@ -303,15 +304,18 @@ else if($action === "payment"){
     if (empty($endTime)) { array_push($errors, "end time is required"); }
     if (empty($estimatedCost)) { array_push($errors, "estimated cost is required"); }
 
+
+    //redirectToCheckout();
+
     if (count($errors) == 0) {
-        $newBooking = addBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost, $db);
+        //$newBooking = addBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost, $db);
 		
-		if (!$newBooking) {
-            array_push($errors, "Booking not added");
-            }else{
-                setBookingPaid("True",$bookID,$db);
-                header('location: /profile');
-            }
+		//if (!$newBooking) {
+            //array_push($errors, "Booking not added");
+           // }else{
+             //   setBookingPaid("True",$bookID,$db);
+            //    header('location: /profile');
+          //  }
 		
 	}
 

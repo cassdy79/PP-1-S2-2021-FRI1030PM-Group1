@@ -35,15 +35,55 @@ if (!$unpaidBookingDetails) {
 } else if($currentBooking){
         header("location: /map");
 }
+require($path .'/payment/stripe.php');
+
+$session = \Stripe\Checkout\Session::create([
+  'payment_method_types' => ['card'],
+  'line_items' => [[
+    'price_data' => [
+      'currency' => 'usd',
+      'product_data' => [
+        'name' => 'T-shirt',
+      ],
+      'unit_amount' => 2000,
+    ],
+    'quantity' => 1,
+  ]],
+  'mode' => 'payment',
+  'success_url' => 'https://localhost/success',
+  'cancel_url' => 'https://localhost/cancel',
+]);
+
+
 
 ?>
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+var stripe = Stripe("pk_test_51JhAe3JycQsKUYZJ21F7A3Y1tdVGdKjIq4TASxeSisptAbrQfvuMreFHZ9v2bXPdUpiFqwTv55HzwnML4hsMGAmY00uh3grug6");
+var session = "<?php echo $session['id']; ?>"
+
+stripe.redirectToCheckout({sessionId: session})
+
+.then(function(result) {
+
+  if (result.error) {
+    alert(result.error.message);
+  }
+}
+).catch(function(error){
+  console.error("Error:", error);
+}
+
+);
+
+</script>
 
 <div class="header">
 	<h2>Payment</h2>
 
 </div>
 
-<form method="post" action="#">
+<form method="post" id="payment-form" action="#">
 <?php include($errorPath); ?>
 <?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
@@ -82,7 +122,7 @@ if (!$unpaidBookingDetails) {
 <input type="hidden" name="estimatedCost" value=<?=$unpaidBookingDetails["estimatedCost"]?>>
 <br>
 
-<div class="input-group">
+<!-- <div class="input-group">
   		<label>Full Name</label>
   		<input type="text" name="cardName" required>
   	</div>
@@ -96,20 +136,21 @@ if (!$unpaidBookingDetails) {
   	</div>
   	<div class="input-group">
   		<label>CVC</label>
-  		<input type="text" name="cardCVC" required>
-  	</div>
-      <div id="card-element" class="form-control">
-          <!-- a Stripe Element will be inserted here. -->
-    </div>
+  		<input type="text" name="cardCVC" required> -->
+
 <br>
-<div class="input-group">
-        <button type="submit" class="btn" name="book">Confirm Payment</button>
-</div>
+
+<button type="submit" class="btn" id="submitStripe" name="book">
+
+<span id="button-text">Pay now</span>
+
+</button>
+
+<br>
         
 </form>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://js.stripe.com/v3/"></script>
-<script src="./js/charge.js"></script>
+
 <?php include('layouts/footer.php') ?>
