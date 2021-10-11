@@ -70,3 +70,13 @@
 		mysqli_query($db, $query);
 		$_SESSION['success'] = "Admin Add Successful";
 }	
+
+    function getUserByID($id, $db){
+        $query = "select * from users where id='".$id."'";
+		$presult = mysqli_query($db, $query);
+			 if (mysqli_num_rows($presult) == 1) {
+				$user = mysqli_fetch_array($presult);
+				return $user;
+			}
+			return null;
+    }

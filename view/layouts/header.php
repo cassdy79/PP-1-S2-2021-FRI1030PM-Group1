@@ -17,6 +17,7 @@ include($path . '/controller/server.php');
     <script src = "//code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    
     <link rel="stylesheet" href="/view/css/style.css"  type="text/css">
     <script src="/view/js/script.js"></script>
 

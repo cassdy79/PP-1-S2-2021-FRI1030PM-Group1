@@ -16,6 +16,7 @@ function getCurrentUnpaidBooking($id, $db){
 				$book = mysqli_fetch_array($presult);
                 $book["car"] = getCarID($book['carID'], $db);
                 $book["location"] = getLocationID($book['locationID'], $db);
+                $book["user"] = getUserByID($book['userID'], $db);
 				return $book;
 			}
 			return null;

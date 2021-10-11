@@ -41,10 +41,19 @@ route('/checkout\?id=(\d+)', function(){
     include('view/payment.php');
 });
 
+route('/checkout\?id=(\d+)\&payment=failed', function(){
+    include('view/payment.php');
+});
+
+route('/checkout\?id=(\d+)\&payment=success', function(){
+    include('view/payment.php');
+});
+
 route('/logout', function(){
     session_destroy();
     header("location: /");
 });
+
 
 $action = $_SERVER['REQUEST_URI'];
 dispatch($action);

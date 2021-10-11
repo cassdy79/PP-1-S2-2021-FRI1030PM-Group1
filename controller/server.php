@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Australia/Melbourne');
 #require_once($path .'/mailer/mail.php');
-#include($path .'/payment/stripe.php');
+include($path .'/payment/stripe.php');
 include($path . '/model/database.php');
 $errorPath = $path . "/view/layouts/errors.php";
 $errors = array(); 
@@ -296,6 +296,7 @@ else if($action === "payment"){
     $startTime = mysqli_real_escape_string($db, $_POST['startTime']);
     $endTime = mysqli_real_escape_string($db, $_POST['endTime']);
     $estimatedCost = mysqli_real_escape_string($db, $_POST['estimatedCost']);
+    $completed = mysqli_real_escape_string($db, $_POST['completed']);
 
     if (empty($locationID)) { array_push($errors, "locID is required"); }
     if (empty($userID)) { array_push($errors, "UserID is required"); }
@@ -303,19 +304,50 @@ else if($action === "payment"){
     if (empty($startTime))  { array_push($errors, "start time is required"); }
     if (empty($endTime)) { array_push($errors, "end time is required"); }
     if (empty($estimatedCost)) { array_push($errors, "estimated cost is required"); }
+    $invoice = getCurrentUnpaidBooking($bookID, $db);
+    if (!$invoice) { array_push($errors, "Error Invoice unavailable"); }
 
-
+    
     //redirectToCheckout();
 
     if (count($errors) == 0) {
-        //$newBooking = addBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost, $db);
-		
-		//if (!$newBooking) {
-            //array_push($errors, "Booking not added");
-           // }else{
-             //   setBookingPaid("True",$bookID,$db);
-            //    header('location: /profile');
-          //  }
+        if($completed === "True"){
+
+            $newBooking = addBooking($carID, $userID, $locationID, $startTime, $endTime, $estimatedCost, $db);
+            #$newBooking = True;
+            if (!$newBooking) {
+                array_push($errors, "Booking not added");
+            }else{
+                setBookingPaid("True",$bookID,$db);
+                    header('location: /profile');
+                }
+        } else {
+            echo "<script src='https://js.stripe.com/v3/'></script>";
+            $session = doIt($estimatedCost, $invoice);
+            $sessionID = $session->id;
+            echo "
+            <script type='text/javascript'>
+    
+            var stripe = Stripe('pk_test_51JhAe3JycQsKUYZJ21F7A3Y1tdVGdKjIq4TASxeSisptAbrQfvuMreFHZ9v2bXPdUpiFqwTv55HzwnML4hsMGAmY00uh3grug6');
+            
+            stripe.redirectToCheckout({sessionId: '{$sessionID}'})
+    
+            .then(function(result) {
+    
+            if (result.error) {
+                alert(result.error.message);
+                }
+            }
+            ).catch(function(error){
+            console.error('Error:', error);
+        }
+    
+        );
+    
+        </script>"; 
+
+
+        }
 		
 	}
 

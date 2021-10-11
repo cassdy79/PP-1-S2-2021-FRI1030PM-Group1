@@ -8,6 +8,14 @@ if (!isset($_SESSION['email'])) {
 $url= parse_url($_SERVER['REQUEST_URI']);
 
 parse_str($url['query'], $params);
+$completed = "False";
+  if(count($params) == 2){
+    if($params["payment"] === "failed"){
+    $_SESSION['error'] = "Payment not completed";
+    } else if($params["payment"] === "success"){
+      $completed = "True";
+    }
+  };
 
 $unpaidBookingDetails = getCurrentUnpaidBooking($params["id"], $db);
 
@@ -16,6 +24,7 @@ if($unpaidBookingDetails) {
     if($previousBookings){
         foreach ($previousBookings as $book) {
         if ($book['id'] != $params["id"]){
+            
             setBookingPaid("False",$book['id'], $db);
         }
         } 
@@ -35,48 +44,10 @@ if (!$unpaidBookingDetails) {
 } else if($currentBooking){
         header("location: /map");
 }
-require($path .'/payment/stripe.php');
-
-$session = \Stripe\Checkout\Session::create([
-  'payment_method_types' => ['card'],
-  'line_items' => [[
-    'price_data' => [
-      'currency' => 'usd',
-      'product_data' => [
-        'name' => 'T-shirt',
-      ],
-      'unit_amount' => 2000,
-    ],
-    'quantity' => 1,
-  ]],
-  'mode' => 'payment',
-  'success_url' => 'https://localhost/success',
-  'cancel_url' => 'https://localhost/cancel',
-]);
-
 
 
 ?>
-<script src="https://js.stripe.com/v3/"></script>
-<script type="text/javascript">
-var stripe = Stripe("pk_test_51JhAe3JycQsKUYZJ21F7A3Y1tdVGdKjIq4TASxeSisptAbrQfvuMreFHZ9v2bXPdUpiFqwTv55HzwnML4hsMGAmY00uh3grug6");
-var session = "<?php echo $session['id']; ?>"
 
-stripe.redirectToCheckout({sessionId: session})
-
-.then(function(result) {
-
-  if (result.error) {
-    alert(result.error.message);
-  }
-}
-).catch(function(error){
-  console.error("Error:", error);
-}
-
-);
-
-</script>
 
 <div class="header">
 	<h2>Payment</h2>
@@ -85,15 +56,18 @@ stripe.redirectToCheckout({sessionId: session})
 
 <form method="post" id="payment-form" action="#">
 <?php include($errorPath); ?>
-<?php if (isset($_SESSION['success'])) : ?>
-      <div class="error success" >
+<?php if (isset($_SESSION['error'])) : ?>
+      <div class="error" >
       	<h3>
           <?php 
-          	echo $_SESSION['success']; 
-          	unset($_SESSION['success']);
+          	echo $_SESSION['error']; 
+          	unset($_SESSION['error']);
+
           ?>
+          
       	</h3>
       </div>
+      <br>
 <?php endif ?>
 
 <h7 class="profile"> Booking ID: </h7> <b class="details"><?= $unpaidBookingDetails['id'] ?></b>
@@ -120,34 +94,24 @@ stripe.redirectToCheckout({sessionId: session})
 <input type="hidden" name="startTime" value='<?=$unpaidBookingDetails["startTime"]?>'>
 <input type="hidden" name="endTime" value='<?=$unpaidBookingDetails["endTime"]?>'>
 <input type="hidden" name="estimatedCost" value=<?=$unpaidBookingDetails["estimatedCost"]?>>
+<input type="hidden" name="completed" value=<?=$completed?>>
 <br>
 
-<!-- <div class="input-group">
-  		<label>Full Name</label>
-  		<input type="text" name="cardName" required>
-  	</div>
-  	<div class="input-group">
-  		<label>Card Number</label>
-  		<input type="text" name="cardNum" required>
-  	</div>
-  	<div class="input-group">
-  		<label>Expiry Date</label>
-  		<input type="text" name="cardExpiry" required>
-  	</div>
-  	<div class="input-group">
-  		<label>CVC</label>
-  		<input type="text" name="cardCVC" required> -->
 
 <br>
+
 
 <button type="submit" class="btn" id="submitStripe" name="book">
 
 <span id="button-text">Pay now</span>
 
 </button>
-
-<br>
-        
+<?php if ($completed === "True") : ?>
+  <script type="text/javascript">
+    var form = document.getElementById("payment-form");
+    form.submit();
+</script>
+<?php endif ?>
 </form>
 
 
