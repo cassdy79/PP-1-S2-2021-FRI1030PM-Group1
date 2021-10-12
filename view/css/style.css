@@ -19,6 +19,17 @@
     padding: 20px;
   }
 
+  .homeHeader {
+    margin: 40px auto 0px;
+    color: white;
+    background: #C31437;
+    text-align: center;
+    border: 1px solid #B0C4DE;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+  }
+
   .header {
     width: 30%;
   }
@@ -37,7 +48,7 @@
   height: auto;
 }
 
- 
+
   a {
     text-decoration: none;
   }
@@ -48,14 +59,14 @@
 
   #currentlyBooked {
     text-align: center;
-    margin: 0px auto; 
+    margin: 0px auto;
     margin-bottom: 20px;
-    padding: 20px; 
-    border: 1px solid #a94442; 
-    color: #a94442; 
-    background: #f2dede; 
-    border-radius: 5px; 
-  
+    padding: 20px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+
   }
   #buttons1{
     width: 30%;
@@ -75,10 +86,10 @@
 
   #hiddenButton {
     margin-top: 20px;
-    
+
   }
   #adminForm, #carForm, #assignForm,
-  #adminFormHeader, #carFormHeader, #assignFormHeader, 
+  #adminFormHeader, #carFormHeader, #assignFormHeader,
   #pastContentHeader, #pastContent ,#hiddenControls {
     display:none;
   }
@@ -233,7 +244,7 @@
 
   .details {
     float: left;
-    
+
   }
 
   .profile {
@@ -251,3 +262,6 @@
    color: #EEE;
 }
 
+.home1 {
+  background-image: url("images/car 3.jpg")
+}
