@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Australia/Melbourne');
-#require_once($path .'/mailer/mail.php');
+require_once($path .'/mailer/mail.php');
 include($path .'/payment/stripe.php');
 include($path . '/model/database.php');
 $errorPath = $path . "/view/layouts/errors.php";
@@ -15,8 +15,6 @@ if (isset($_SESSION['email'])) {
         $_SESSION['admin'] = True;
     }
 }
-
-
 
 
 
@@ -49,6 +47,10 @@ if ($action === "register"){
     if (empty($password_1)) { array_push($errors, "Password is required"); }
     if (empty($password_2)) { array_push($errors, "Confirm Password is required"); }
 
+    if (!preg_match("/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/", $email)) {
+        array_push($errors, "Invalid Email");}
+
+
     //checks for unmatched passwords
     if ($password_1 != $password_2) {
             array_push($errors, "The two passwords do not match");
@@ -58,11 +60,10 @@ if ($action === "register"){
             array_push($errors, "Email already exists");
     } 
     //adds if no issues
-    else {
+    if (count($errors) == 0) {
         add_user($fullname, $phone, $email, $password_1, $db);
-        #registeremail($email,$fullname, $mail);
+        registeremail($email,$fullname, $mail);
         #registeremail("cassdycc21@ail.com",$fullname, $mail);
-        
     }
 
 } 
@@ -298,6 +299,7 @@ else if($action === "payment"){
     $estimatedCost = mysqli_real_escape_string($db, $_POST['estimatedCost']);
     $completed = mysqli_real_escape_string($db, $_POST['completed']);
 
+    
     if (empty($locationID)) { array_push($errors, "locID is required"); }
     if (empty($userID)) { array_push($errors, "UserID is required"); }
     if (empty($carID)) { array_push($errors, "carID is required"); }
@@ -319,6 +321,7 @@ else if($action === "payment"){
                 array_push($errors, "Booking not added");
             }else{
                 setBookingPaid("True",$bookID,$db);
+                invoiceEmail($invoice['user']['email'],$invoice, $mail);
                     header('location: /profile');
                 }
         } else {

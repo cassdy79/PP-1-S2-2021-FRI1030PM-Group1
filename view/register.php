@@ -33,7 +33,7 @@
 
 	<div class="input-group">
 	<label>Phone Number</label>
-	<input type="tel" id="phone" name="phone" placeholder="0000-000-000" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required>
+	<input type="tel" id="phone" name="phone" pattern="[0]{1}[2-4]{1}[0-9]{4}[0-9]{4}" required>
 	</div>
 
   	<div class="input-group">
