@@ -1,4 +1,5 @@
 <?php
+//includes server at the start of each page
 $path = $_SERVER['DOCUMENT_ROOT'];
 include($path . '/controller/server.php');
 

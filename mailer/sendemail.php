@@ -1,26 +1,31 @@
-<?php 
-function registeremail($email, $fullname ,$mail) {
-$adminEmail = "noreplytsbcarshare@gmail.com";
-$mail->IsHTML(true);
-if (!isset($_SESSION['admin'])) {
-  $mail->AddAddress($email, $fullname);
-} else {
-  $mail->AddAddress($adminEmail, $fullname);
+<?php
+
+//function which sends an email to a user if successfully registered
+function registeremail($email, $fullname, $mail)
+{
+  $adminEmail = "noreplytsbcarshare@gmail.com";
+  $mail->IsHTML(true);
+  if (!isset($_SESSION['admin'])) {
+    $mail->AddAddress($email, $fullname);
+  } else {
+    $mail->AddAddress($adminEmail, $fullname);
+  }
+  $mail->SetFrom("noreplytsbcarshare@gmail.com", "TSB Car Share");
+  $mail->Subject = "You have registered successfully";
+  $content = '<b>Welcome, ' . $fullname . ' to TSB car share, we hope you enjoy your stay</b>';
+
+  $mail->MsgHTML($content);
+
+  if (!$mail->Send()) {
+    echo "Error while sending Email.";
+    var_dump($mail);
+  }
 }
-$mail->SetFrom("noreplytsbcarshare@gmail.com", "TSB Car Share");
-$mail->Subject = "You have registered successfully";
-$content = '<b>Welcome, '. $fullname.' to TSB car share, we hope you enjoy your stay</b>';
-
-$mail->MsgHTML($content); 
-
-if(!$mail->Send()) {
-  echo "Error while sending Email.";
-  var_dump($mail);
-}
-}
 
 
-function invoiceEmail($email, $invoice ,$mail) {
+//function which sends an invoice of their purchase to the user
+function invoiceEmail($email, $invoice, $mail)
+{
   $adminEmail = "noreplytsbcarshare@gmail.com";
   $mail->IsHTML(true);
   if (!isset($_SESSION['admin'])) {
@@ -32,13 +37,13 @@ function invoiceEmail($email, $invoice ,$mail) {
 
   $mail->SetFrom("noreplytsbcarshare@gmail.com", "TSB Car Share");
   $mail->Subject = "Payment successful";
-  $content = '<b>Hello!, '. $invoice['user']['fullname'].', you have paid '.$invoice['estimatedCost'].', for your pick up
-  at '.$invoice['location']['name'].' at '.$invoice['startTime'].'.';
-  
-  $mail->MsgHTML($content); 
-  
-  if(!$mail->Send()) {
+  $content = '<b>Hello!, ' . $invoice['user']['fullname'] . ', you have paid ' . $invoice['estimatedCost'] . ', for your pick up
+  at ' . $invoice['location']['name'] . ' at ' . $invoice['startTime'] . '.';
+
+  $mail->MsgHTML($content);
+
+  if (!$mail->Send()) {
     echo "Error while sending Email.";
     var_dump($mail);
   }
-  }
+}

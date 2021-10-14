@@ -1,5 +1,5 @@
 <?php
-//initialize database
+//development
 $db = mysqli_connect('localhost', 'root', '', 'carshare');
 
 //production
@@ -19,8 +19,7 @@ $check5 = mysqli_query($db, 'select 1 from `unpaidbookings` LIMIT 1');
 
 
 
-if($check === FALSE)
-{
+if ($check === FALSE) {
     $query = "CREATE TABLE IF NOT EXISTS `users` (
         `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
         `fullname` varchar(100) NOT NULL,
@@ -36,8 +35,7 @@ if($check === FALSE)
     mysqli_query($db, $adminQuery);
 }
 
-if($check2 === FALSE)
-{
+if ($check2 === FALSE) {
     $query = "CREATE TABLE IF NOT EXISTS `locations` (
         `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
         `address` varchar(200) NOT NULL,
@@ -52,8 +50,7 @@ if($check2 === FALSE)
     //mysqli_query($db, $insertQuery);
 }
 
-if($check3 === FALSE)
-{
+if ($check3 === FALSE) {
     $query = "CREATE TABLE IF NOT EXISTS `cars` (
         `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
         `carName` varchar(200) NOT NULL,
@@ -61,12 +58,11 @@ if($check3 === FALSE)
         `locationID` varchar(100) NULL,
         `booked` varchar(50) NULL
     )";
-	
-	mysqli_query($db, $query);
+
+    mysqli_query($db, $query);
 }
 
-if($check4 === FALSE)
-{
+if ($check4 === FALSE) {
     $query = "CREATE TABLE IF NOT EXISTS `bookings` (
         `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
         `carID` varchar(11) NOT NULL,
@@ -77,12 +73,11 @@ if($check4 === FALSE)
         `estimatedCost` varchar(100) NOT NULL,
         `pastBooking` varchar(100) NULL
     )";
-	
-	mysqli_query($db, $query);
+
+    mysqli_query($db, $query);
 }
 
-if($check5 === FALSE)
-{
+if ($check5 === FALSE) {
     $query = "CREATE TABLE IF NOT EXISTS `unpaidbookings` (
         `id` int(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
         `carID` varchar(11) NOT NULL,
@@ -94,27 +89,28 @@ if($check5 === FALSE)
         `paid` varchar(100) NULL,
         `timeOfBooking` varchar(100) NOT NULL
     )";
-	
-	mysqli_query($db, $query);
+
+    mysqli_query($db, $query);
 }
 
 
 
-include($path ."/model/users.php");
-include($path ."/model/locations.php");
-include($path ."/model/cars.php");
-include($path ."/model/bookings.php");
-include($path ."/model/unpaidbookings.php");
+include($path . "/model/users.php");
+include($path . "/model/locations.php");
+include($path . "/model/cars.php");
+include($path . "/model/bookings.php");
+include($path . "/model/unpaidbookings.php");
 
-function dropTables($db, $table){
-    if($table === "cars"){
+function dropTables($db, $table)
+{
+    if ($table === "cars") {
         $query = "SELECT * FROM locations";
         $allLocations = mysqli_query($db, $query);
-        if (mysqli_num_rows($allLocations) !==0){
-            while($row = mysqli_fetch_assoc($allLocations)) {
-            setOccupied("False", $row["id"], $db);
+        if (mysqli_num_rows($allLocations) !== 0) {
+            while ($row = mysqli_fetch_assoc($allLocations)) {
+                setOccupied("False", $row["id"], $db);
             }
         }
     }
-    mysqli_query($db, 'DROP TABLE '.$table);
+    mysqli_query($db, 'DROP TABLE ' . $table);
 }
