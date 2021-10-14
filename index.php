@@ -3,6 +3,7 @@ session_start();
 
 require_once("routes/router.php");
 
+//All possible routes 
 
 route('/', function(){
     include('view/home.php');
