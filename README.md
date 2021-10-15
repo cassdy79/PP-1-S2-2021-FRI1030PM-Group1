@@ -19,6 +19,10 @@ The frameworks and APIs that we used were:
 - Composer for emails
 - Google Maps for map functions
 
+## Accessing the _Online Version_
+The TSB Car Share Scheme web-application can be accessed from [this website](https://tsb-carshare.herokuapp.com/)
+
+
 ## Running TSB on a _Local Machine_
 In order to run the program on a local machine, a user will need to download and use XAMPP, download composer and add:
 ```
