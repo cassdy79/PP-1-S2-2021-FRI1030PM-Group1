@@ -89,9 +89,9 @@
     margin-top: 20px;
 
   }
-  #adminForm, #carForm, #assignForm,
+  #locForm, #adminForm, #carForm, #assignForm, #locFormHeader,
   #adminFormHeader, #carFormHeader, #assignFormHeader,
-  #pastContentHeader, #pastContent ,#hiddenControls {
+  #pastContentHeader, #pastContent ,#hiddenControls, #hiddenButton{
     display:none;
   }
 
