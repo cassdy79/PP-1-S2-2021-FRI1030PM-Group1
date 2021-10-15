@@ -34,7 +34,11 @@ In order to run the program on a local machine, a user will need to download and
     }
 }
 ```
-to the composer.json file, and run it. The user will also need to add a carshare databse into their PHPMyAdmin when XAMPP is running.
+to the composer.json file, and run the command
+```
+composer update
+```
+The user will also need to add a carshare databse into their PHPMyAdmin when XAMPP is running.
 
 ## Use
 In order to use the program, the user needs to be logged in, with either a pre-existing account or by creating one, and then by clicking on the relevant headings in order to achieve the desired outcome.
