@@ -1,0 +1,304 @@
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+  body {
+    font-size: 120%;
+    background: #202020;
+    font-family: sans-serif;
+  }
+
+  .header, .mapHeader {
+    margin: 40px auto 0px;
+    color: white;
+    background: #C31437;
+    text-align: center;
+    border: 1px solid #B0C4DE;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+  }
+
+  .homeHeader {
+    width: 75%;
+    margin: 40px auto 0px;
+    color: white;
+    background: #C31437;
+    text-align: center;
+    border: 1px solid #B0C4DE;
+    border-bottom: none;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+  }
+
+  .header {
+    width: 40%;
+  }
+
+  #pastContentHeader, #currentContentHeader {
+    width: 50%;
+  }
+
+  .mapHeader {
+    width: 60%;
+    }
+
+.content {
+  color: white;
+  padding: 20px;
+  height: auto;
+}
+
+
+  a {
+    text-decoration: none;
+  }
+  #cost {
+    height:30px;
+    font-size:14pt;
+  }
+
+  #currentlyBooked {
+    text-align: center;
+    margin: 0px auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+
+  }
+  #buttons1{
+    width: 30%;
+    margin: 0px auto;
+    padding-top: 20px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: #202020;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  #profileButtons{
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  #hiddenButton {
+    margin-top: 20px;
+
+  }
+  #locForm, #adminForm, #carForm, #assignForm, #locFormHeader,
+  #adminFormHeader, #carFormHeader, #assignFormHeader,
+  #pastContentHeader, #pastContent ,#hiddenControls, #hiddenButton{
+    display:none;
+  }
+
+
+  .mapcontent {
+    width: 60%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: #292929;
+    border-radius: 0px 0px 10px 10px;
+  }
+
+  form, .label {
+    color: white;
+  }
+
+  body>form, .content {
+    width: 40%;
+    margin: 0px auto;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: #292929;;
+    border-radius: 0px 0px 10px 10px;
+  }
+
+  #pastContent, #currentContent {
+    width: 50%;
+  }
+
+
+  #hiddenControls {
+    width: 30%;
+    margin: 0px auto;
+    padding: 20px;
+    border: 1px solid #B0C4DE;
+    background: #202020;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  #map {
+    height: 100%;
+  }
+
+  #locdata, #locdata2, #bookingdata {
+    display: none;
+  }
+
+.map_container {
+  height:70vh;
+  width: 80%;
+  margin: 0px auto;
+  padding: 20px;
+  border: 1px solid #B0C4DE;
+  background: #202020;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.homeLogo {
+  width:60%;
+  margin: 20px;
+}
+  .input-group {
+    margin: 10px 0px 10px 0px;
+  }
+  .input-group label {
+    display: block;
+    text-align: left;
+    margin: 3px;
+  }
+  .input-group input {
+    height: 30px;
+    width: 93%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+  .btn {
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+    background: #C31437;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn:disabled {
+    background: #575757;
+    cursor: pointer;
+  }
+
+  .error {
+    width: 92%;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
+    text-align: left;
+  }
+  .success {
+    color: #3c763d;
+    background: #dff0d8;
+    border: 1px solid #3c763d;
+    margin-bottom: 20px;
+  }
+
+
+  nav{
+    width: 75%;
+    margin: 50px auto 0px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background: #C31437;
+    text-align: center;
+    border: 1px solid #B0C4DE;
+    border-bottom: none;
+    border-radius: 10px 10px 10px 10px;
+    padding: 20px;
+    line-height: 40px;
+  }
+
+  td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  a:link {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: white;
+  }
+
+  a:visited {
+    color: white;
+  }
+
+  a:hover {
+    background-color: #202020;
+    color: #C31437;
+    filter: drop-shadow(5px 5px 5px black);
+    border-radius: 5px 5px 5px 5px;
+  }
+
+
+  .details {
+    float: left;
+
+  }
+
+  .profile {
+    float: left;
+    width:150px;
+    position: relative;
+    padding-left: 20px;
+}
+
+
+
+.datepicker {
+   background: #333;
+   border: 1px solid #555;
+   color: #EEE;
+}
+
+.homeBack {
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  text-align: right;
+  height: 500px;
+  color: white;
+}
+
+.homeContent {
+  width: 77.5%;
+  margin: auto;
+}
+
+#home1 {
+  background-image: url("/view/images/car 3.jpg");
+}
+
+#home2 {
+  background-image: url("/view/images/car 5.jpg");
+}
+
+#home3 {
+  background-image: url("/view/images/car 2.jpg");
+}
+
+#home4 {
+  background-image: url("/view/images/car 6.jpg");
+}
+
+.homeTitle {
+padding-top: 450px;
+padding-right: 20px;
+filter: drop-shadow(0px 0px 5px black);
+}
+
+.homeText {
+  color: white;
+  padding: 5px;
+  margin: 20px;
+}
