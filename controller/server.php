@@ -48,10 +48,10 @@ if ($action === "register") {
     $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
     ////////////////////////////////////////////////
-    //  if (!preg_match("#.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$#", $password_1)) {
-    //     array_push($errors, "Password must be at least 8 characters in length and must contain at 
-    //     least one number, one upper case letter, one lower case letter and one special character.");
-    //     }
+    if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{6,15}$/", $password_1)) {
+        array_push($errors, "Password must be between 6 and 15 characters in length, must contain at 
+        least one number, one upper case letter and one lower case letter.");
+    }
 
     //else
 
