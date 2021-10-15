@@ -16,8 +16,9 @@ The frameworks and APIs that we used were:
 
 - MySQL for database management
 - Stripe for payments
-- Composer for emails
+- PHPMailer for emails
 - Google Maps for map functions
+- Composer for controlling libraries
 
 ## Accessing the _Online Version_
 The TSB Car Share Scheme web-application can be accessed from [this website](https://tsb-carshare.herokuapp.com/)
@@ -38,7 +39,13 @@ to the composer.json file, and run the command
 ```
 composer update
 ```
-The user will also need to add a carshare databse into their PHPMyAdmin when XAMPP is running.
+The user will also need to add a carshare databse into their PHPMyAdmin when XAMPP is running, and change into development variables, which are found in
+```
+model/coordinates.php
+model/database.php
+payment/stripe.php
+```
+and update them to the correct local variables and URLs
 
 ## Use
 In order to use the program, the user needs to be logged in, with either a pre-existing account or by creating one, and then by clicking on the relevant headings in order to achieve the desired outcome.
