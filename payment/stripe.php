@@ -30,12 +30,12 @@ function paymentMethod($cost, $invoice)
     ]],
     'mode' => 'payment',
     //Development
-    'success_url' => 'http://localhost/checkout?id=' . $invoice['id'] . '&payment=success',
-    'cancel_url' => 'http://localhost/checkout?id=' . $invoice['id'] . '&payment=failed',
+    #'success_url' => 'http://localhost/checkout?id=' . $invoice['id'] . '&payment=success',
+    #'cancel_url' => 'http://localhost/checkout?id=' . $invoice['id'] . '&payment=failed',
 
     //Production
-    #'success_url' => 'https://tsb-carshare.herokuapp.com/checkout?id=' . $invoice['id'] . '&payment=success',
-    #'cancel_url' => 'https://tsb-carshare.herokuapp.com/checkout?id=' . $invoice['id'] . '&payment=failed',
+    'success_url' => 'https://tsb-carshare.herokuapp.com/checkout?id=' . $invoice['id'] . '&payment=success',
+    'cancel_url' => 'https://tsb-carshare.herokuapp.com/checkout?id=' . $invoice['id'] . '&payment=failed',
   ]);
 
 
